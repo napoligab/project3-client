@@ -1,70 +1,207 @@
-# Getting Started with Create React App
+# NOT DEVASTATED
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+# Quick Compo
 
-In the project directory, you can run:
+<br>
 
-### `npm start`
+## Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is an app to create potential concerts and present them to the users so they can vote/fund for the concert to happen. The idea is that the app can reunite a minimum number of attendees/funds in order to close a deal with the artists and, in that way, connect them with their fans.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## User Stories
 
-### `npm test`
+- **404:** As a user I get to see a 404 page with a feedback message if I try to reach a page that does not exist so that I know it's my fault.
+- **Signup:** As an anonymous user I can sign up on the platform so that I can have the user's features available.
+- **User Login:** As a user I can login to the platform so that I can access my profile and start checking and voting/funding for concerts to happen and also be able to see the list of concerts I've voted/contributed for.
+- **Admin Login:** As a admin I can login to the platform and start creating and posting concerts.
+- **Logout:** As a logged in user and admin I can logout from the platform so no one else can use it.
+- **User Profile Page**: As a logged in user I can visit my profile page so that I can access and edit it.
+- **Admin Profile Page**: As a logged in admin I can have access to the admin features, like creating, editing and deleting concerts, apart from editing my profile details.
+- **Edit Concerts:** As a logged in admin I can access the edit concerts page so that I can edit and delete the concerts I created.
+- **All Concerts Page:** A page where both user and admin can see a list of all concerts posted.
+- **Concert Details:** Both user and admin can have access to the concert details page so that they can check the status of the contributions and if the concert is happening or not.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Backlog
 
-### `npm run build`
+- users can contribute
+- add search concerts for artists
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Client / Frontend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## React Router Routes (React App)
 
-### `npm run eject`
+| Path                         | Component          | Permissions                     | Behavior                                                    |
+| ---------------------------- | ------------------ | ------------------------------- | ----------------------------------------------------------- |
+| `/user/login`                | UserLoginPage      | anon only `<AnonRoute>`         | Login form, navigates to concerts page after login.         |
+| `/admin/login`               | AdminLoginPage     | anon only `<AnonRoute>`         | Login form, navigates to concerts page after login.         |
+| `/signup`                    | SignupPage         | anon only `<AnonRoute>`         | Signup form, navigates to login page after signup.          |
+| `/`                          | HomePage           | public `<Route>`                | Home page.                                                  |
+| `/user-profile/:userId`      | ProfilePage        | user only `<PrivateRoute>`      | User profile details page.                                  |
+| `/user-profile/edit/:userId` | EditProfilePage    | user only `<PrivateRoute>`      | Edit user profile form.                                     |
+| `/add-concert`               | CreateConcertPage  | admin only `<PrivateRoute>`     | Create new concert form.                                    |
+| `/concerts`                  | ConcertsPage       | user and admin `<PrivateRoute>` | All concerts list.                                          |
+| `/concerts/fund/:concertId`  | FundPage           | user only `<PrivateRoute>`      | Shows a form to input an amount to fund a specific concert. |
+| `/concerts/edit/:concertId`  | EditConcertPage    | admin only `<PrivateRoute>`     | Concerts to be edited by the admin.                         |
+| `/fundedconcerts`            | FundedConcertsPage | user only `<PrivateRoute>`      | Shows a list ofconcerts funded by the user.                 |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Components
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Pages:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- UserLoginPage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- AdminLoginPage
 
-## Learn More
+- SignupPage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- HomePage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ProfilePage
 
-### Code Splitting
+- EditProfilePage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- CreateConcertPage [admin only]
 
-### Analyzing the Bundle Size
+- ConcertsPage
+- EditConcertPage [admin only]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- FundPage [user only]
 
-### Making a Progressive Web App
+- FundedConcertsPage [user only]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Components:
 
-### Advanced Configuration
+- UserCard
+- AdminCard
+- ConcertCard
+- Navbar
+- DropDownMenu
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Services
 
-### Deployment
+- **Auth Service**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  - `authService` :
+    - `.login(user & admin)`
+    - `.signup(user)`
+    - `.logout()`
+    - `.validate()`
 
-### `npm run build` fails to minify
+- **GetArtist Service**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  - `GetArtistService` :
+    - `.getArtist()`
+
+<br>
+
+# Server / Backend
+
+## Models
+
+**User model**
+
+```javascript
+{
+    firstName: { type: String, required: true},
+    lastName: { type: String, required: true},
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    city: { type: String, required: true},
+	fundedConcerts: [{ type: Schema.Types.ObjectId, ref:'Concert'}],
+    creditCard:{ type: Number, required: true},
+    profilePicture: String
+}
+```
+
+**Admin model**
+
+```javascript
+{
+    firstName: { type: String, required: true},
+    lastName: { type: String, required: true},
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    profilePicture: String
+}
+```
+
+**Concert model**
+
+```javascript
+ {
+   artist: { type: String, required: true },
+   img: { type: String, required: true },
+   date: Date,
+   city: { type: String, required: true},
+   venue: { type: String, required: true},
+   budget: {
+    amount: Number,
+    deadline: Date
+   }
+   usersFunding: [{ type: Schema.Types.ObjectId, ref:'User'}]
+ }
+```
+
+<br>
+
+## API Endpoints (backend routes)
+
+| HTTP Method | URL                              | Request Body                                                                             | Success status | Error Status | Description                                                                                                                     |
+| ----------- | -------------------------------- | ---------------------------------------------------------------------------------------- | -------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------- | --- | --- |
+| GET         | `/auth/profile `                 | Saved session                                                                            | 200            | 404          | Check if user is logged in and return profile page                                                                              |
+| POST        | `/auth/signup`                   | {firstName, lastName, email, password, city, fundedConcerts, creditCard, profilePicture} | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
+| GET         | `/auth/user/login`               | {email, password}                                                                        | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session              |
+| GET         | `/auth/admin/login`              | {email, password}                                                                        | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session              |
+| POST        | `/auth/user-login`               | {email, password}                                                                        | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session              |
+| POST        | `/auth/admin-login`              | {email, password}                                                                        | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session              |
+| POST        | `/auth/logout`                   |                                                                                          | 204            | 400          | Logs out the user                                                                                                               |
+| GET         | `/api/concerts`                  |                                                                                          |                | 400          | Show all concerts                                                                                                               |
+| GET         | `api/concerts/fund/:concertId`   |                                                                                          |                |              | Shows a page with a form to fund for a concert                                                                                  |
+| POST        | `api/concerts/fund/:concertId`   |                                                                                          |                |              | add                                                                                                                             |
+| POST        | `/api/concerts`                  | { artist, venue, city, date, budget, users_funding }                                     | 201            | 400          | Create and save a new concert                                                                                                   |
+| PUT         | `/api/concerts/:id`              | { artist, venue, city, date, budget, users_funding}                                      | 200            | 400          | edit concert                                                                                                                    |
+| DELETE      | `/api/concerts/:id`              |                                                                                          | 201            | 400          | delete concert                                                                                                                  |
+| GET         | `/api/user-profile/:id`          |                                                                                          |                |              | show specific user                                                                                                              |     |
+| PUT         | `/api/user-profile/edit/:userId` | {firstName, lastName, email, password, city, fundedConcerts, creditCard, profilePicture} | 201            | 400          | edit user                                                                                                                       |     |     |
+
+<br>
+
+## API's
+
+**Last.fm API:** http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=cher&api_key=YOUR_API_KEY&format=json
+
+<br>
+
+## Packages
+
+<br>
+
+## Links
+
+### Trello/Kanban
+
+[Link to your trello board](https://trello.com/b/PBqtkUFX/curasan) or a picture of your physical board
+
+### Git
+
+The url to your repository and to your deployed project
+
+[Client repository Link](https://github.com/napoligab/project3-client)
+
+[Server repository Link](https://github.com/napoligab/project3-server)
+
+[Deployed App Link]()
+
+### Slides
+
+[Slides Link](http://slides.com) - The url to your _public_ presentation slides
+
+### Contributors
+
+Gabriella Hevesy - https://github.com/napoligab - <https://www.linkedin.com/in/napoligabriella>
+
+Brenda Lopes - https://github.com/Brenda-Lop - <https://www.linkedin.com/in/brenda--lopes>
