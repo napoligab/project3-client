@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: grey;
+}
+
+.logo {
+  width: 30vw;
+}
+
+.HomeButtons {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
