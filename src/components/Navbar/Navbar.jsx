@@ -1,10 +1,13 @@
-import {Link} from 'react-router-dom';
+/* import {Link} from 'react-router-dom';
 import {AuthContext} from '../../context/auth.context';
-import {useContext} from 'react';
+import {useContext} from 'react'; */
+import nobackground from '../../nobackground.png'
+import {Link} from 'react-router-dom';
+import './navbar.css';
 
 
 function Navbar() {
-  const {loggedIn, user, logout} = useContext(AuthContext);
+ /*  const {loggedIn, user, logout} = useContext(AuthContext);
 
   return (
     <nav className='Navbar'>
@@ -35,8 +38,15 @@ function Navbar() {
      )}
 
 
-    </nav>
-  )
+    </nav> */
+
+    return (
+      <nav>
+      <Link to='/'>
+      <img src={nobackground} alt='logo' className='logo'/>
+      </Link>
+      </nav>
+    )
 }
 
 export default Navbar;

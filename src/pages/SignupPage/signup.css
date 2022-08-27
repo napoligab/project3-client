@@ -1,0 +1,40 @@
+.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+    background-color:#D9D9D9;
+    margin-top: 10vh;
+    border-radius: 20px;
+    width: 80vw;
+    margin-left: 10vw;
+    height: 30vh;
+}
+
+h2 {
+    color: white;
+    margin-top: 10vh;
+}
+.login-btn {
+  border-radius: 10px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  height: 5vh; 
+  width: 55vw;
+  font-size: 16px; 
+  background-color: #D9D9D9;
+  color: #827676;
+  border-style: none;
+
+}
+
+.account-btn {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

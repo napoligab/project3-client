@@ -1,23 +1,18 @@
 import {Link} from 'react-router-dom';
-import nobackground from '../../nobackground.png';
-import '../../App.css'; 
+import './homepage.css';
 
 function HomePage() {
   return (
     <div>
-      
-     <div className='logo'>
-     <img src={nobackground} alt='logo'/>
-     </div>
 
-     <div className='HomeButtons'>     
+     <div className='home-btn'>     
      <Link to='/login' >
-      <button>login</button>
+      <button className='btn'>login</button>
      </Link> 
 
 
      <Link to='/signup' >
-      <button>signup</button>
+      <button className='btn'>signup</button>
      </Link>
 
      </div>

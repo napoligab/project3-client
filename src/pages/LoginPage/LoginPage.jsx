@@ -2,30 +2,31 @@ import axios from "axios";
 import {useState, useContext} from 'react';
 import {useNavigate, Link} from 'react-router-dom';
 import { AuthContext } from '../../context/auth.context';
+import './loginpage.css'
 
 
 function LoginPage(props) {
 
-const [username, setUsername] = useState('');
+const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [errorMessage, setErrorMessage] = useState('');
 
 const navigate = useNavigate();
 const {storeToken, authenticateUser} = useContext(AuthContext);
 
-const handleUsername = (e) => setUsername(e.target.value);
+const handleEmail= (e) => setEmail(e.target.value);
 const handlePassword = (e) => setPassword(e.target.value);
 
 const handleSubmit = (e) => {
  e.preventDefault();
  
- const body = {username, password};
+ const body = {email, password};
 
   axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, body)
   .then((response) => {
     storeToken(response.data.authToken)
     authenticateUser();
-      navigate ('/projects')
+      navigate ('/concerts')
      })
   .catch ((err) => {
     console.log(err)
@@ -35,25 +36,33 @@ const handleSubmit = (e) => {
 
 
   return (
-    <div className="LoginPage">
-    <h1>Login</h1>
+    <div>
+    <h2>login</h2>
 
-    <form onSubmit={handleSubmit}>
+     <div className="login-page">
+      <form onSubmit={handleSubmit}>
     
-    <label htmlFor="username">Username: </label>
-    <input type="text" name="username" value={username} onChange= {handleUsername} />
-    <label htmlFor="password">Password: </label>
-    <input type="password" name="password" value={password} onChange= {handlePassword} />
-
-    <button type="submit">Login</button>
+       <label htmlFor="email"><b>email:</b> </label>
+       <input type="email" name="email" value={email} onChange= {handleEmail} placeholder="your email"/> <br></br>
+       <label htmlFor="password"><b>password:</b> </label>
+       <input type="password" name="password" value={password}  minLength="6" onChange= {handlePassword} placeholder="your password"/>
+        <br></br>
+       <button type="submit">Login</button>
         </form>
 
+     </div>
+    
+     <div className="account-btn">
     {errorMessage && (<p>{errorMessage}</p>)}
 
     <p>Don't have an account?</p>
-    <Link to="/signup">Sign up</Link>
+    <Link className="login-btn" to="/signup">sign up</Link>
+
+     </div>
 
     </div>
+
+
   )
 }
 

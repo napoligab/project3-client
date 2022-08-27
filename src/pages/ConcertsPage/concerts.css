@@ -1,0 +1,37 @@
+h2 {
+    color: white;
+    margin-top: 2vh;
+}
+
+a {
+    color: black;
+}
+
+.artist-pic {
+    max-height: 150px;
+    max-width: 50vw;
+}
+.concert-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:#D9D9D9;
+    border-radius: 20px;
+    max-width: 80vw;
+    margin-left: 10vw;
+    padding: 5px;
+}
+
+.fund-btn {
+    border-radius:18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh; 
+    width: 15vw;
+    font-size: 16px; 
+    background-color: #7bff4d;
+    color: black;
+    border-style: none;
+}
