@@ -3,13 +3,22 @@ background-color: black;
 height: 8vh;
 width: 100vw;
 display: flex;
-justify-content: center;
+justify-items: flex-start;
 align-items: center;
 }
 
 .logo {
-    width: 28vw;
-    height: 7vh;
+    max-width: 28vw;
+    max-height: 7vh;
+    margin-left: 2vw;
+   
+}
+
+.menu-icon {
+    filter: invert(100%);
+    max-width: 8vw;
+    max-height: 4vh;
+    margin-left: 3vw;
 }
 
 

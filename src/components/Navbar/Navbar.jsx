@@ -1,52 +1,54 @@
-/* import {Link} from 'react-router-dom';
+ import {Link} from 'react-router-dom';
 import {AuthContext} from '../../context/auth.context';
-import {useContext} from 'react'; */
+import {useContext} from 'react'; 
 import nobackground from '../../nobackground.png'
-import {Link} from 'react-router-dom';
 import './navbar.css';
+import menu from '../../menu.png';
 
 
 function Navbar() {
- /*  const {loggedIn, user, logout} = useContext(AuthContext);
+  const {loggedIn, logout} = useContext(AuthContext);
 
   return (
     <nav className='Navbar'>
-      <Link to='/'>
-       <button>Home</button>  
-      </Link>
 
      {loggedIn && (
       <>
-      <Link to ='/projects'>
-       <button>Projects</button>  
+     
+      <Link to='/menu'>
+      <img className="menu-icon" src={menu} alt='logo' />
       </Link>
-      <span>{user.username}</span>
+
+      
+      <img src={nobackground} alt='logo' className='logo'/>
+     
+      
       <button onClick={logout}>Logout</button>
+
       </>
      )} 
      
      {!loggedIn && (
       <>
-      <Link to='/login'>
-       <button>Login</button>  
-      </Link>
-      <Link to='/signup'>
-       <button>Signup</button>  
-      </Link>
-
+      <img src={nobackground} alt='logo' className='logo'/>
       </>
      )}
 
 
-    </nav> */
+    </nav> 
 
-    return (
+  /*   return (
       <nav>
-      <Link to='/'>
-      <img src={nobackground} alt='logo' className='logo'/>
+
+      <Link to='/menu'>
+      <img className="menu-icon" src={menu} alt='logo' />
       </Link>
-      </nav>
-    )
+
+      
+      <img src={nobackground} alt='logo' className='logo'/>
+      
+      </nav> */
+    ) 
 }
 
 export default Navbar;
