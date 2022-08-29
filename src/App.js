@@ -11,8 +11,10 @@ import Navbar from './components/Navbar/Navbar';
 import ConcertsPage from './pages/ConcertsPage/ConcertsPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import FundPage from './pages/FundPage/FundPage';
-/* import FundedConcertsPage from './pages/FundedConcertsPage/FundedConcertsPage'; */
+import FundedConcertsPage from './pages/FundedConcertsPage/FundedConcertsPage';  
 import CreateConcert from './pages/CreateConcert/CreateConcert';
+import MenuPage from './pages/MenuPage/MenuPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 function App() {
 
@@ -43,10 +45,12 @@ const getConcerts = async () => {
       <Route path='/signup' element= {<SignupPage />} />
       <Route path='/login' element= {<LoginPage />} />
       <Route path='/concerts' element= {<ConcertsPage concerts={concerts}/>} />
-      <Route path='/concerts/concertId/fund' element= {<FundPage concerts={concerts}/>} />
-     {/*  <Route path='/funded-concerts' element= {<FundedConcertsPage />} /> */}
+      <Route path='/concerts/:concertId/fund' element= {<FundPage concerts={concerts}/>} />
+      <Route path='/funded-concerts/:userId' element= {<FundedConcertsPage concerts={concerts}/>} />
       <Route path='/createconcerts' element= {<CreateConcert />} />
-      <Route path='/*' element= {<ErrorPage />} />
+      <Route path='/menu' element= {<MenuPage />} />
+      <Route path='/user/userId' element= {<ProfilePage />} />
+      <Route path='*' element= {<ErrorPage />} />
     </Routes>
       
     </div>

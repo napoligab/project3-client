@@ -17,6 +17,7 @@ function ConcertsPage(props) {
         <div className="concert-card" key={concert._id}> 
 
        <Link to={`/concerts/${concert._id}`}> 
+
         <h3>{concert.artist}</h3>
         <img className="artist-pic" src='https://cdn.smehost.net/formssonymusicfanscom-appirioprod/wp-content/uploads/2022/02/mm-cover.jpg' alt='rosalia'/>
         <h4>{concert.date}</h4>

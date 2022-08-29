@@ -1,4 +1,4 @@
-.concert-card {
+.menu-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,6 +8,9 @@
     max-width: 80vw;
     margin-left: 10vw;
     padding: 5px;
-    color: black;
+    color: white;
 }
 
+.menu-link {
+    border: 1px solid white;
+}
