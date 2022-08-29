@@ -9,6 +9,7 @@ import menu from '../../menu.png';
 function Navbar() {
   const {loggedIn, logout} = useContext(AuthContext);
 
+
   return (
     <nav className='Navbar'>
 
@@ -22,14 +23,16 @@ function Navbar() {
       
       <img src={nobackground} alt='logo' className='logo'/>
      
-      
-      <button onClick={logout}>Logout</button>
-
+     
+      <button onClick={logout}>logout</button>
+  
+     
       </>
      )} 
      
      {!loggedIn && (
       <>
+      
       <img src={nobackground} alt='logo' className='logo'/>
       </>
      )}
