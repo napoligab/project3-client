@@ -13,13 +13,26 @@ function CreateConcert({ getConcerts }) {
   const [ticket, setTicket] = useState(0);
 
   const handleArtist = (e) => setArtist(e.target.value);
-  const handleImage = (e) => setImage(e.target.value);
   const handleDate = (e) => setDate(e.target.value);
   const handleCity = (e) => setCity(e.target.value);
   const handleVenue = (e) => setVenue(e.target.value);
   const handleBudget = (e) => setBudget(e.target.value);
   const handleDeadline = (e) => setDeadline(e.target.value);
   const handleTicket = (e) => setTicket(e.target.value);
+  // Dont forget xico
+  //url => http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=Cher&api_key=YOUR_API_KEY&format=json
+
+  const handleImage = (e) => {
+    const uploadData = new FormData();
+    uploadData.append('imageUrl', e.target.files[0]);
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
+      .then((response) => {
+        setImage(response.data.fileUrl);
+        console.log(response.data.fileUrl);
+      })
+      .catch((err) => console.log('Error while uploading the file: ', err));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,8 +69,8 @@ function CreateConcert({ getConcerts }) {
           onChange={handleArtist}
         />
 
-        <label htmlFor="image">aescription</label>
-        <input type="file" name="image" value={image} onChange={handleImage} />
+        <label htmlFor="image">Description</label>
+        <input type="file" name="image" onChange={handleImage} />
 
         <label htmlFor="date">date</label>
         <input type="date" name="date" value={date} onChange={handleDate} />
