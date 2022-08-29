@@ -1,0 +1,12 @@
+.concert-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(217, 217, 217, 0.6);
+    border-radius: 20px;
+    max-width: 80vw;
+    margin-left: 10vw;
+    padding: 5px;
+    color: black;
+}
