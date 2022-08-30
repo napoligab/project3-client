@@ -63,7 +63,7 @@ function EditConcert() {
         const body = { artist, venue, city, date, budget, deadline, minTicket, imageUrl };
         
         axios
-          .put(`${process.env.REACT_APP_API_URL}/api/concerts/{concertId}`, body)
+          .put(`${process.env.REACT_APP_API_URL}/api/concerts/{concertId}/edit`, body)
           .then(() => {
             setArtist('');
             setImageUrl('');

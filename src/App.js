@@ -47,7 +47,7 @@ const getConcerts = async () => {
       <Route path='/signup' element= {<SignupPage />} />
       <Route path='/login' element= {<LoginPage />} />
       <Route path='/concerts' element= {<ConcertsPage concerts={concerts}/>} />
-      <Route path='/concerts/:concertId' element= {<EditConcert concerts={concerts}/>} />
+      <Route path='/concerts/:concertId/edit' element= {<EditConcert concerts={concerts}/>} />
       <Route path='/concerts/:concertId/fund' element= {<FundPage concerts={concerts}/>} />
       <Route path='/funded-concerts/:userId' element= {<FundedConcertsPage concerts={concerts}/>} />
       <Route path='/createconcerts' element= {<CreateConcert />} />

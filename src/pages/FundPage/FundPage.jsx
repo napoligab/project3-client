@@ -7,8 +7,7 @@ import {useNavigate} from 'react-router-dom';
 
 function FundPage(props) {
     const {concerts} = props;
-    const { concertId } = useParams();
-    const {userId} = useParams();
+    const { concertId, userId } = useParams();
     const [qtyTickets, setQtyTickets] = useState(0);
 
     const navigate = useNavigate();
@@ -27,7 +26,7 @@ function FundPage(props) {
          .put(`${process.env.REACT_APP_API_URL}/api/concerts/${concertId}/fund`, body)
          .then((response) => {
           console.log(response.data);
-          navigate (`funded-concerts/${userId}`)
+          navigate (`/funded-concerts/${userId}`)
          }) 
          .catch((err) => console.log(err.response.data.errorMessage));
 

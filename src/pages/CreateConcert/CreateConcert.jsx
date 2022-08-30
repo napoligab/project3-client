@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function CreateConcert({ getConcerts }) {
+function CreateConcert() {
   const [artist, setArtist] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [date, setDate] = useState('');
@@ -10,7 +10,7 @@ function CreateConcert({ getConcerts }) {
   const [venue, setVenue] = useState('');
   const [budget, setBudget] = useState(0);
   const [deadline, setDeadline] = useState('');
-  const [minticket, setMinTicket] = useState(0);
+  const [minTicket, setMinTicket] = useState(0);
   const navigate = useNavigate();
 
   const [artists, setArtists] = useState([]);
@@ -20,7 +20,7 @@ function CreateConcert({ getConcerts }) {
   const getArtists = async () => {
     try {
       const response = await axios.get(
-        `http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${query}&api_key=59f3ecc4af95e20ed1f8a92aeecba469&format=json`
+        `http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${query}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json`
       );
       console.log(response.data.results.artistmatches.artist);
       setArtists(response.data.results.artistmatches.artist);
@@ -37,8 +37,6 @@ function CreateConcert({ getConcerts }) {
   const handleBudget = (e) => setBudget(e.target.value);
   const handleDeadline = (e) => setDeadline(e.target.value);
   const handleMinTicket = (e) => setMinTicket(e.target.value);
-  // Dont forget xico
-  //url => http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=Cher&api_key=YOUR_API_KEY&format=json
 
   const handleImageUrl = (e) => {
     const uploadData = new FormData();
@@ -63,15 +61,15 @@ function CreateConcert({ getConcerts }) {
       venue,
       budget,
       deadline,
-      minticket,
+      minTicket,
     };
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/concerts`, body)
-      .then(() => {
-        getConcerts();
-        navigate('/concerts');
-      })
+      .post(`${process.env.REACT_APP_API_URL}/api/createconcerts`, body)
+      .then((response) => {
+        console.log(response)
+        navigate('/concerts')
+      }) 
       .catch((err) => console.log(err));
 
     setArtist('');
@@ -85,7 +83,7 @@ function CreateConcert({ getConcerts }) {
   };
 
   return (
-    <div className="AddProject">
+    <div className="AddConcert">
       <>
         {showBar ? (
           <>
@@ -104,30 +102,42 @@ function CreateConcert({ getConcerts }) {
             <select>
               {artists.map((artist) => {
                 return (
-                  <option
+                  {/* <option
                     onClick={(e) => setQuery(e.target.value)}
                     key={artist.name}
                     value={artist.name}
                   >
                     {artist.name}
-                  </option>
+                  </option> */}
                 );
               })}
             </select>
           </>
         )}
       </>
-      <h3>Add Concert</h3>
+      <h3>add concert</h3>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="artist">artist</label>
-        <input
+        <>
+            <select>
+        <option
+                    onClick={(e) => setQuery(e.target.value)}
+                    onChange={handleArtist}
+                    key={artist.name}
+                    value={artist.name}
+                  >
+                    {artist.name}
+                   </option>
+                  </select> 
+                </>
+        {/* <input
           type="text"
           name="artist"
           value={artist}
           onChange={handleArtist}
         />
-
+ */}
         <label htmlFor="imageUrl">Description</label>
         <input type="file" name="imageUrl" onChange={handleImageUrl} />
 
@@ -160,7 +170,7 @@ function CreateConcert({ getConcerts }) {
         <input
           type="number"
           name="ticket"
-          value={minticket}
+          value={minTicket}
           onChange={handleMinTicket}
         />
 
