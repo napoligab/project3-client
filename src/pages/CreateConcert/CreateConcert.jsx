@@ -12,6 +12,23 @@ function CreateConcert({ getConcerts }) {
   const [deadline, setDeadline] = useState('');
   const [ticket, setTicket] = useState(0);
 
+  const [artists, setArtists] = useState([]);
+  const [query, setQuery] = useState('');
+  const [showBar, setShowBar] = useState(true);
+
+  const getArtists = async () => {
+    try {
+      const response = await axios.get(
+        `http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${query}&api_key=59f3ecc4af95e20ed1f8a92aeecba469&format=json`
+      );
+      console.log(response.data.results.artistmatches.artist);
+      setArtists(response.data.results.artistmatches.artist);
+      setShowBar(false);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   const handleArtist = (e) => setArtist(e.target.value);
   const handleDate = (e) => setDate(e.target.value);
   const handleCity = (e) => setCity(e.target.value);
@@ -58,6 +75,37 @@ function CreateConcert({ getConcerts }) {
 
   return (
     <div className="AddProject">
+      <>
+        {showBar ? (
+          <>
+            <input
+              type="text"
+              onChange={(e) => setQuery(e.target.value)}
+              value={query}
+            />
+            <button onClick={() => getArtists()}>Submit</button>
+          </>
+        ) : (
+          <></>
+        )}
+        {artists && (
+          <>
+            <select>
+              {artists.map((artist) => {
+                return (
+                  <option
+                    onClick={(e) => setQuery(e.target.value)}
+                    key={artist.name}
+                    value={artist.name}
+                  >
+                    {artist.name}
+                  </option>
+                );
+              })}
+            </select>
+          </>
+        )}
+      </>
       <h3>Add Concert</h3>
 
       <form onSubmit={handleSubmit}>
