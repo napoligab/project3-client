@@ -1,19 +1,19 @@
 import axios from 'axios';
 import {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
-/* import {useContext} from 'react';
-import { AuthContext } from '../../context/auth.context'; */
+import {useContext} from 'react';
+import { AuthContext } from '../../context/auth.context';
 
 
 
 function FundedConcertsPage() {
- const {userId} = useParams();
- const [objUser, setObjUser] = useState(null);  
+
+ const [objUser, setObjUser] = useState(null); 
+ const {user} = useContext(AuthContext); 
  
 
  const getUser = async () => {
     try {
-      let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/funded-concerts/${userId}`);
+      let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/funded-concerts/${user._id}`);
       setObjUser(response.data);
       console.log(response.data);
     } catch (error) {

@@ -1,15 +1,17 @@
 import {useParams} from 'react-router-dom';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import './fund.css';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import {AuthContext} from '../../context/auth.context';
 
 
 function FundPage(props) {
     const {concerts} = props;
-    const { concertId, userId } = useParams();
+    const { concertId } = useParams();
     const [qtyTickets, setQtyTickets] = useState(0);
-
+    const [user, setUser] = useState(0);
+    const {user: loggedUser} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const foundConcert = concerts.find((concert) => concert._id === concertId);
@@ -26,7 +28,7 @@ function FundPage(props) {
          .put(`${process.env.REACT_APP_API_URL}/api/concerts/${concertId}/fund`, body)
          .then((response) => {
           console.log(response.data);
-          navigate (`/funded-concerts/${userId}`)
+          navigate (`/funded-concerts/${loggedUser._id}`)
          }) 
          .catch((err) => console.log(err.response.data.errorMessage));
 

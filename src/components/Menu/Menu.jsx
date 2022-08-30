@@ -1,10 +1,10 @@
-import {Link, useParams} from 'react-router-dom';
-/* import {useContext} from 'react';
-import { AuthContext } from '../../context/auth.context';  */
+import {Link} from 'react-router-dom';
+import {useContext} from 'react';
+import { AuthContext } from '../../context/auth.context';  
 
 function MenuPage() {
- /*    const {user} = useContext(AuthContext);  */
-     const {userId} = useParams();
+  const {user} = useContext(AuthContext);  
+
  
   return (
     <div className='menu-div'>
@@ -12,10 +12,10 @@ function MenuPage() {
         <Link className='menu-link' to={'/concerts'}>
         <h2>concerts</h2>
         </Link>
-        <Link className='menu-link' to={`/funded-concerts/${userId}`}>
+        <Link className='menu-link' to={`/funded-concerts/${user._id}`}>
         <h2>funded concerts</h2>
         </Link>
-        <Link className='menu-link' to={`/user/${userId}`}> 
+        <Link className='menu-link' to={`/user/${user._id}`}> 
         <h2>my account</h2></Link>
 
     
