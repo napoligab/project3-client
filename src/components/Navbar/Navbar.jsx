@@ -4,10 +4,12 @@ import {useContext} from 'react';
 import nobackground from '../../nobackground.png'
 import './navbar.css';
 import menu from '../../menu.png';
+import {useParams} from 'react-router-dom';
 
 
 function Navbar() {
   const {loggedIn, logout} = useContext(AuthContext);
+  const {userId} = useParams();
 
 
   return (
@@ -16,7 +18,7 @@ function Navbar() {
      {loggedIn && (
       <>
      
-      <Link to='/menu'>
+      <Link to={`/menu/${userId}`}>
       <img className="menu-icon" src={menu} alt='logo' />
       </Link>
 

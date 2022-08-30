@@ -37,6 +37,7 @@ const handleSubmit = (e) => {
 
 
   return (
+    
     <div className="SignupPage">
     <h2>sign up</h2>
 

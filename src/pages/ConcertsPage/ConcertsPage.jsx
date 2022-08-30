@@ -12,6 +12,12 @@ function ConcertsPage(props) {
         
      <Searchbar />
 
+      {/* these  button should be available for admin only */}
+   
+       <Link to={'/createconcerts'}>
+        <button className="fund-btn">create concert!</button>
+       </Link>
+
       {concerts.map((concert) => {
       return (
         <div className="concert-card" key={concert._id}> 
@@ -28,9 +34,17 @@ function ConcertsPage(props) {
         <h4>{concert.usersFunding.length}</h4>
        </Link>
 
+ 
+      {/* these two buttons should be available for users only */}
        <Link to={`/concerts/${concert._id}/fund`}>
         <button className="fund-btn">fund!</button>
        </Link>
+
+       {/* these two buttons should be available for admin only */}
+       <Link to={`/concerts/${concert._id}`}>
+        <button className="fund-btn">edit concert!</button>
+       </Link>
+     
         
         </div>
       )

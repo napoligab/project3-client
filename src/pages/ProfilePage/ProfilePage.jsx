@@ -1,27 +1,36 @@
-import {useContext, useEffect} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import { AuthContext } from '../../context/auth.context'; 
 import {useParams} from 'react-router-dom'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
+import './profile.css';
+
 
 function ProfilePage() {
 const {userId} = useParams();
-const {user} = useContext(AuthContext);
+/* const {user} = useContext(AuthContext);
+ */
+const [user, setUser] = useState(null)
+console.log(user);
 
 const getUser = async () => {
     try {
-      let response = await axios.get(`${process.env.REACT_APP_API_URL}api/user/${userId}`);
-      console.log(response.data);
+      let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/${userId}`);
+      console.log(response);
+      setUser(response.data)
     } catch (err) {
       console.log(err.response.data.errorMessage);
     }
-  };
+  }; 
 
-  useEffect(() => {
+  useEffect(() => { 
     getUser();
-  }, []);
+  }, []);   
 
+/*   how to bring the user information here? */
 
   return (
+
     <div>
     <h2>my account</h2>
 
@@ -33,6 +42,10 @@ const getUser = async () => {
     <h4>city: {user.city}</h4>
     <h4>credit card number: {user.creditCard}</h4>
     <h4>profile picture: {user.profilePicture}</h4>
+
+    <Link to={`/edit/${userId}`}>
+        <button>edit profile</button>
+    </Link>
     </>
     )}
     </div>

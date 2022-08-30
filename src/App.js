@@ -13,8 +13,10 @@ import ErrorPage from './pages/ErrorPage/ErrorPage';
 import FundPage from './pages/FundPage/FundPage';
 import FundedConcertsPage from './pages/FundedConcertsPage/FundedConcertsPage';  
 import CreateConcert from './pages/CreateConcert/CreateConcert';
-import MenuPage from './pages/MenuPage/MenuPage';
+import Menu from './components/Menu/Menu';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import EditConcert from './pages/EditConcert/EditConcert';
+import EditProfile from './pages/EditProfile/EditProfile'
 
 function App() {
 
@@ -45,11 +47,13 @@ const getConcerts = async () => {
       <Route path='/signup' element= {<SignupPage />} />
       <Route path='/login' element= {<LoginPage />} />
       <Route path='/concerts' element= {<ConcertsPage concerts={concerts}/>} />
+      <Route path='/concerts/:concertId' element= {<EditConcert concerts={concerts}/>} />
       <Route path='/concerts/:concertId/fund' element= {<FundPage concerts={concerts}/>} />
       <Route path='/funded-concerts/:userId' element= {<FundedConcertsPage concerts={concerts}/>} />
       <Route path='/createconcerts' element= {<CreateConcert />} />
-      <Route path='/menu' element= {<MenuPage />} />
-      <Route path='/user/userId' element= {<ProfilePage />} />
+      <Route path='/menu/:userId' element= {<Menu />} />
+      <Route path='/user/:userId' element= {<ProfilePage />} />
+      <Route path='/edit/:userId' element= {<EditProfile />} />
       <Route path='*' element= {<ErrorPage />} />
     </Routes>
       

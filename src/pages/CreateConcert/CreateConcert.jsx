@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import axios from 'axios';
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 function CreateConcert({ getConcerts }) {
   const [artist, setArtist] = useState('');
-  const [image, setImage] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [date, setDate] = useState('');
   const [city, setCity] = useState('');
   const [venue, setVenue] = useState('');
   const [budget, setBudget] = useState(0);
   const [deadline, setDeadline] = useState('');
-  const [ticket, setTicket] = useState(0);
+  const [minticket, setMinTicket] = useState(0);
+  const navigate = useNavigate();
+
 
   const handleArtist = (e) => setArtist(e.target.value);
   const handleDate = (e) => setDate(e.target.value);
@@ -18,17 +21,17 @@ function CreateConcert({ getConcerts }) {
   const handleVenue = (e) => setVenue(e.target.value);
   const handleBudget = (e) => setBudget(e.target.value);
   const handleDeadline = (e) => setDeadline(e.target.value);
-  const handleTicket = (e) => setTicket(e.target.value);
+  const handleMinTicket = (e) => setMinTicket(e.target.value);
   // Dont forget xico
   //url => http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=Cher&api_key=YOUR_API_KEY&format=json
 
-  const handleImage = (e) => {
+  const handleImageUrl = (e) => {
     const uploadData = new FormData();
     uploadData.append('imageUrl', e.target.files[0]);
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
       .then((response) => {
-        setImage(response.data.fileUrl);
+        setImageUrl(response.data.fileUrl);
         console.log(response.data.fileUrl);
       })
       .catch((err) => console.log('Error while uploading the file: ', err));
@@ -37,28 +40,29 @@ function CreateConcert({ getConcerts }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const body = { artist, image, date, city, venue, budget, deadline, ticket };
+    const body = { artist, imageUrl, date, city, venue, budget, deadline, minticket };
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/concerts`, body)
       .then(() => {
         getConcerts();
+        navigate('/concerts')
       })
       .catch((err) => console.log(err));
 
     setArtist('');
-    setImage('');
+    setImageUrl('');
     setDate('');
     setCity('');
     setVenue('');
     setBudget('');
     setDeadline('');
-    setTicket('');
+    setMinTicket('');
   };
 
   return (
     <div className="AddProject">
-      <h3>Add Concert</h3>
+      <h3>create concert</h3>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="artist">artist</label>
@@ -69,8 +73,8 @@ function CreateConcert({ getConcerts }) {
           onChange={handleArtist}
         />
 
-        <label htmlFor="image">Description</label>
-        <input type="file" name="image" onChange={handleImage} />
+        <label htmlFor="imageUrl">Description</label>
+        <input type="file" name="imageUrl" onChange={handleImageUrl} />
 
         <label htmlFor="date">date</label>
         <input type="date" name="date" value={date} onChange={handleDate} />
@@ -101,11 +105,11 @@ function CreateConcert({ getConcerts }) {
         <input
           type="number"
           name="ticket"
-          value={ticket}
-          onChange={handleTicket}
+          value={minticket}
+          onChange={handleMinTicket}
         />
 
-        <button type="submit">Add Project</button>
+        <button type="submit">add concert</button>
       </form>
     </div>
   );
