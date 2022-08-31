@@ -48,16 +48,15 @@ function FundPage(props) {
 
       {foundConcert && (
         <>
-          <h3>{foundConcert.artist}</h3>
-          <img
-            className="artist-pic"
-            src="https://cdn.smehost.net/formssonymusicfanscom-appirioprod/wp-content/uploads/2022/02/mm-cover.jpg"
-            alt="rosalia"
-          />
-          <h4>{foundConcert.date}</h4>
-          <h4>{foundConcert.city}</h4>
-          <h4>{foundConcert.budget}€ to go</h4>
-          <h4>{foundConcert.minTicket}€</h4>
+              <h3>{foundConcert.artist}</h3>
+              <img className="artist-pic" src={foundConcert.image} alt="artist" />
+              <h4>{foundConcert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
+              <h4>{foundConcert.city}</h4>
+              <h4>{foundConcert.venue}</h4>
+              <h4>{foundConcert.budget}€</h4>
+              <h4>{foundConcert.minTicket}€</h4>
+              <h4>{foundConcert.usersFunding.length}</h4>
+            
 
           <form onSubmit={handleSubmit}>
             <input
