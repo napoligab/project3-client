@@ -38,13 +38,8 @@ function FundedConcertsPage() {
             return (
               <div className="concert-card" key={concert._id}>
                 <h3>{concert.artist}</h3>
-                <img
-                  className="artist-pic"
-                  src={concert.image}
-                  alt="rosalia"
-                />
+                <img className="artist-pic" src={concert.image} alt="artist" />
                 <h4>{concert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
-                <h4>{concert.deadline.slice(0, 10).split('-').reverse().join('/')}</h4>
                 <h4>{concert.city}</h4>
                 <h4>{concert.venue}</h4>
                 <h4>{concert.budget}€</h4>
