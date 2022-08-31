@@ -9,7 +9,7 @@ function FundPage(props) {
   const { concerts } = props;
   const { concertId } = useParams();
   const [qtyTickets, setQtyTickets] = useState(0);
-  const [user, setUser] = useState(0);
+/*   const [user, setUser] = useState(0); */
   const { user: loggedUser } = useContext(AuthContext);
   const navigate = useNavigate();
 

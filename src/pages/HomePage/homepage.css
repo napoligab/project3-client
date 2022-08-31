@@ -1,6 +1,8 @@
 
 body {
-    background-color: black ;
+    background-color: black;
+    /* position: absolute;
+    repeat: no-repeat; */
   }
   
   .home-btn {
@@ -32,6 +34,6 @@ body {
 
   a {
     text-decoration: none;
-   
-
+  
   }
+

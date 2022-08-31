@@ -17,12 +17,20 @@ function ConcertsPage(props) {
         <button className="fund-btn">create concert!</button>
       </Link>
 
+       {/* these  button should be available for users only */}
+      <Link to={'/request'}>
+          <button className="fund-btn">send us your request</button>
+      </Link>
+      <Link to={'/checkrequests'}>
+          <button className="fund-btn">check requests</button>
+      </Link>
+
       {concerts.map((concert) => {
         return (
           <div className="concert-card" key={concert._id}>
             <Link to={`/concerts/${concert._id}`}>
               <h3>{concert.artist}</h3>
-              <img className="artist-pic" src={concert.image} alt="rosalia" />
+              <img className="artist-pic" src={concert.image} alt="artist" />
               <h4>
                 {concert.date.slice(0, 10).split('-').reverse().join('/')}
               </h4>
@@ -43,6 +51,7 @@ function ConcertsPage(props) {
               <button className="fund-btn">edit concert!</button>
             </Link>
           </div>
+           
         );
       })}
     </div>

@@ -18,6 +18,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import EditConcert from './pages/EditConcert/EditConcert';
 import EditProfile from './pages/EditProfile/EditProfile';
 import Request from './components/Request/Request';
+import CheckRequests from './pages/CheckRequests/CheckRequests';
 
 function App() {
   const [concerts, setConcerts] = useState([]);
@@ -73,6 +74,7 @@ function App() {
         <Route path="/user/:userId" element={<ProfilePage />} />
         <Route path="/edit/:userId" element={<EditProfile />} />
         <Route path="/request" element={<Request />} />
+        <Route path="/checkrequests" element={<CheckRequests />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
