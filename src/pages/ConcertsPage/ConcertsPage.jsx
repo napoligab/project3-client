@@ -31,9 +31,8 @@ function ConcertsPage(props) {
             <Link to={`/concerts/${concert._id}`}>
               <h3>{concert.artist}</h3>
               <img className="artist-pic" src={concert.image} alt="artist" />
-              <h4>
-                {concert.date.slice(0, 10).split('-').reverse().join('/')}
-              </h4>
+              <h4>{concert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
+ 
               <h4>{concert.city}</h4>
               <h4>{concert.venue}</h4>
               <h4>{concert.budget}€</h4>
