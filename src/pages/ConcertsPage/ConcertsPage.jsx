@@ -14,7 +14,7 @@ function ConcertsPage(props) {
       {/* these  button should be available for admin only */}
 
       <Link to={'/createconcerts'}>
-        <button className="fund-btn">create concert!</button>
+        <button className="create-concert-btn">create concert!</button>
       </Link>
 
       {concerts.map((concert) => {
@@ -22,10 +22,9 @@ function ConcertsPage(props) {
           <div className="concert-card" key={concert._id}>
             <Link to={`/concerts/${concert._id}`}>
               <h3>{concert.artist}</h3>
-              <img className="artist-pic" src={concert.image} alt="rosalia" />
-              <h4>
-                {concert.date.slice(0, 10).split('-').reverse().join('/')}
-              </h4>
+              <img className="artist-pic" src={concert.image} alt="artist" />
+              <h4>{concert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
+ 
               <h4>{concert.city}</h4>
               <h4>{concert.venue}</h4>
               <h4>{concert.budget}€</h4>
