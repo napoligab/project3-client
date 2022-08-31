@@ -1,10 +1,11 @@
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import {useNavigate, useParams} from 'react-router-dom'; 
+import { AuthContext } from '../../context/auth.context';
 
 
 function EditProfile() {
-  /* const {user: loggedUser} = useContext(AuthContext); */
+    const {user: loggedUser} = useContext(AuthContext); 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -19,7 +20,12 @@ function EditProfile() {
 
     const getUser = async () => {
         try {
-        let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/${userId}`)
+        const token = localStorage.getItem('authToken');
+        let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          } )
           setFirstName(response.data.firstName)
           setLastName(response.data.lastName)
           setEmail(response.data.email)
@@ -39,35 +45,65 @@ function EditProfile() {
     const handleFirstName = (e) => setFirstName(e.target.value);
     const handleLastName = (e) => setLastName(e.target.value);
     const handleEmail = (e) => setEmail(e.target.value);
-    const handleProfilePicture = (e) => setProfilePicture(e.target.value);
     const handleCreditCard= (e) => setCreditCard(e.target.value);
     const handleCity= (e) => setCity(e.target.value);
+
+    const handleImageUrl = (e) => {
+        const uploadData = new FormData();
+
+        const token = localStorage.getItem('authToken'); 
+    
+        uploadData.append('imageUrl', e.target.files[0]);
+        axios
+          .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData,{
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
+          .then((response) => {
+            setProfilePicture(response.data.fileUrl);
+            console.log(response.data.fileUrl);
+          })
+          .catch((err) => console.log('Error while uploading the file: ', err));
+      };
+    
     
     const handleSubmit = (e) => {
-     e.preventDefault();
-     
-     const body = {firstName, lastName, email, city, creditCard, profilePicture };
+        e.preventDefault();
+        const token = localStorage.getItem('authToken');
 
-            axios.put(`${process.env.REACT_APP_API_URL}/api/edit/${userId}`, body)
+     const body = {firstName, lastName, email, city, creditCard, profilePicture};
+
+            axios.put(`${process.env.REACT_APP_API_URL}/api/edit/${userId}`, body, {
+                headers: {
+                  Authorization: `Bearer ${token}`
+                }
+              })
             .then(() =>  {
                 setFirstName('');
                 setLastName('');
                 setEmail('');
-                setProfilePicture('');
-                setCreditCard('');
                 setCity('');
-                navigate(`/user/${userId}}`)
+                setCreditCard('');
+                setProfilePicture('');
+                navigate(`/user/${userId}`)
             })
          .catch((err) => console.log(err.response.data.errorMessage));
         };
 
   //Delete user      
 
- /* const deleteUser = () => {
-    axios.delete(`${process.env.REACT_APP_API_URL}/api/edit/${userId}`)
+  const deleteUser = () => {
+    const token = localStorage.getItem('authToken');
+
+    axios.delete(`${process.env.REACT_APP_API_URL}/api/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
     .then(()=> navigate('/'))
     .catch((err) => console.log(err));
- } */
+ }
     
 
   return (
@@ -79,7 +115,7 @@ function EditProfile() {
     <div className="login-page">
 
     <form onSubmit={handleSubmit}>
-    {user !== null && (
+    {user && (
 <>
         <label htmlFor="firstName"><b>first name:</b> </label>
     <input type="text" name="text" value={firstName} placeholder="first name" onChange={handleFirstName} /> <br></br>
@@ -90,8 +126,8 @@ function EditProfile() {
     <label htmlFor="email"><b>email:</b> </label>
     <input type="email" name="email" value={email} placeholder="your email" onChange={handleEmail} /> <br></br>
 
-  {/*   <label htmlFor="profilePicture"><b>profilePicture:</b> </label>
-<input type="file" name="profilePicture" value={profilePicture} onChange= {handleProfilePicture} /> <br></br> */}
+    <label htmlFor="profilePicture"><b>profilePicture:</b> </label>
+<input type="file" name="profilePicture" value={profilePicture} onChange= {handleImageUrl} /> <br></br> 
 
     <label htmlFor="creditCard"><b>credit card:</b> </label>
     <input type="text" name="creditCard" value={creditCard} placeholder="credit card number" minLength="16" maxLength="16" onChange= {handleCreditCard} /> <br></br>
@@ -100,6 +136,7 @@ function EditProfile() {
     <input type="text" name="city" value={city} placeholder="city" onChange={handleCity} /> <br></br>
 
     <button type="submit">update</button>
+    <button onClick={deleteUser}>delete profile</button>
     </>
 )}
         </form>
@@ -109,6 +146,5 @@ function EditProfile() {
   )
  }
  
-
 
 export default EditProfile;

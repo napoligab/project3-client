@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 function EditConcert() {
   const [artist, setArtist] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [image, setImage] = useState('');
   const [date, setDate] = useState('');
   const [city, setCity] = useState('');
   const [venue, setVenue] = useState('');
@@ -13,6 +13,23 @@ function EditConcert() {
   const [minTicket, setMinTicket] = useState(0);
   const { concertId } = useParams();
   const navigate = useNavigate();
+
+  const [artists, setArtists] = useState([]);
+  const [query, setQuery] = useState('');
+  const [showBar, setShowBar] = useState(true);
+
+  const getArtists = async () => {
+    try {
+      const response = await axios.get(
+        `http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${query}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json`
+      );
+      console.log(response.data.results.artistmatches.artist);
+      setArtists(response.data.results.artistmatches.artist);
+      setShowBar(false);
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   const getConcert = async () => {
     const token = localStorage.getItem('authToken');
@@ -26,13 +43,13 @@ function EditConcert() {
         }
       );
       setArtist(response.data.artist);
-      setImageUrl(response.data.image);
+      setImage(response.data.image);
       setDate(response.data.date);
       setCity(response.data.city);
-      setDate(response.data.venue);
-      setDate(response.data.budget);
-      setDate(response.data.deadline);
-      setDate(response.data.ticket);
+      setVenue(response.data.venue);
+      setBudget(response.data.budget);
+      setDeadline(response.data.deadline);
+      setMinTicket(response.data.minTicket);
     } catch (err) {
       console.log(err.response.data.errorMessage);
     }
@@ -52,44 +69,47 @@ function EditConcert() {
 
   const handleImageUrl = (e) => {
     const uploadData = new FormData();
+    const token = localStorage.getItem('authToken');
+
     uploadData.append('imageUrl', e.target.files[0]);
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
+      .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
-        setImageUrl(response.data.fileUrl);
+        setImage(response.data.fileUrl);
         console.log(response.data.fileUrl);
       })
       .catch((err) => console.log('Error while uploading the file: ', err));
   };
 
   const handleSubmit = (e) => {
+      e.preventDefault();
+
     const token = localStorage.getItem('authToken');
-    e.preventDefault();
 
     const body = {
-      artist,
-      venue,
-      city,
-      date,
-      budget,
-      deadline,
-      minTicket,
-      imageUrl,
+        artist,
+        image,
+        date,
+        city,
+        venue,
+        budget,
+        deadline,
+        minTicket,
     };
 
     axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/api/concerts/${concertId}/edit`,
-        body,
-        {
+      .put(`${process.env.REACT_APP_API_URL}/api/concerts/${concertId}/edit`, body, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
-      )
+        })
       .then(() => {
         setArtist('');
-        setImageUrl('');
+        setImage('');
         setDate('');
         setCity('');
         setVenue('');
@@ -98,8 +118,11 @@ function EditConcert() {
         setMinTicket('');
         navigate('/concerts');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.response.data.errorMessage));
   };
+
+
+  // Delete concert
 
   const deleteConcert = () => {
     const token = localStorage.getItem('authToken');
@@ -110,12 +133,12 @@ function EditConcert() {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(() => navigate('/'))
+      .then(() => navigate('/concerts'))
       .catch((err) => console.log(err));
   };
 
   return (
-    <div className="edit-concertct">
+    <div className="edit-concert">
       <h3>edit concert</h3>
 
       <form onSubmit={handleSubmit}>
@@ -164,6 +187,7 @@ function EditConcert() {
         />
 
         <button type="submit">update concert</button>
+
       </form>
 
       <button type="submit" onClick={deleteConcert}>

@@ -40,9 +40,15 @@ function CreateConcert() {
 
   const handleImageUrl = (e) => {
     const uploadData = new FormData();
+    const token = localStorage.getItem('authToken');
+
     uploadData.append('imageUrl', e.target.files[0]);
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
+      .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((response) => {
         setImage(response.data.fileUrl);
         console.log(response.data.fileUrl);
@@ -52,6 +58,7 @@ function CreateConcert() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('authToken');
 
     const body = {
       artist,
@@ -65,7 +72,11 @@ function CreateConcert() {
     };
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/createconcerts`, body)
+      .post(`${process.env.REACT_APP_API_URL}/api/createconcerts`, body, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response);
         navigate('/concerts');

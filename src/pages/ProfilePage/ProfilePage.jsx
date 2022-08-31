@@ -1,5 +1,5 @@
-import {useContext, useEffect, useState} from 'react';
-import { AuthContext } from '../../context/auth.context'; 
+import {/* useContext */ useEffect, useState} from 'react';
+/* import { AuthContext } from '../../context/auth.context';  */
 import axios from 'axios';
 import {Link, useParams} from 'react-router-dom'
 import './profile.css';
@@ -9,8 +9,9 @@ function ProfilePage() {
 
  
 const [user, setUser] = useState(null);
-const {user: loggedUser} = useContext(AuthContext);
-const {userId} = useParams()
+/* const {user: loggedUser} = useContext(AuthContext); */
+const {userId} = useParams();
+
 /* console.log("1: ", loggedUser._id)
 console.log("2: ", userId)
 
@@ -18,7 +19,12 @@ console.log(user); */
 
 const getUser = async () => {
     try {
-      let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/${loggedUser._id}`);
+     const token = localStorage.getItem('authToken');
+      let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       console.log(response);
       setUser(response.data)
     } catch (err) {
@@ -56,4 +62,4 @@ const getUser = async () => {
   )
 }
 
-export default ProfilePage
+export default ProfilePage;
