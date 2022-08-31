@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CreateConcert() {
   const [artist, setArtist] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [image, setImage] = useState('');
   const [date, setDate] = useState('');
   const [city, setCity] = useState('');
   const [venue, setVenue] = useState('');
@@ -44,7 +44,7 @@ function CreateConcert() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
       .then((response) => {
-        setImageUrl(response.data.fileUrl);
+        setImage(response.data.fileUrl);
         console.log(response.data.fileUrl);
       })
       .catch((err) => console.log('Error while uploading the file: ', err));
@@ -55,7 +55,7 @@ function CreateConcert() {
 
     const body = {
       artist,
-      imageUrl,
+      image,
       date,
       city,
       venue,
@@ -67,13 +67,13 @@ function CreateConcert() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/createconcerts`, body)
       .then((response) => {
-        console.log(response)
-        navigate('/concerts')
-      }) 
+        console.log(response);
+        navigate('/concerts');
+      })
       .catch((err) => console.log(err));
 
     setArtist('');
-    setImageUrl('');
+    setImage('');
     setDate('');
     setCity('');
     setVenue('');
@@ -84,7 +84,7 @@ function CreateConcert() {
 
   return (
     <div className="AddConcert">
-      <>
+      {/* <>
         {showBar ? (
           <>
             <input
@@ -102,25 +102,57 @@ function CreateConcert() {
             <select>
               {artists.map((artist) => {
                 return (
-                  {/* <option
+                  <option
                     onClick={(e) => setQuery(e.target.value)}
                     key={artist.name}
                     value={artist.name}
                   >
                     {artist.name}
-                  </option> */}
+                  </option>
                 );
               })}
             </select>
           </>
         )}
-      </>
+      </> */}
       <h3>add concert</h3>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="artist">artist</label>
         <>
-            <select>
+          {showBar ? (
+            <>
+              <input
+                type="text"
+                onChange={(e) => setQuery(e.target.value)}
+                value={query}
+              />
+              <p onClick={() => getArtists()}>Submit</p>
+            </>
+          ) : (
+            <></>
+          )}
+          {artists && (
+            <>
+              <select onChange={handleArtist}>
+                <option value={'No Artist Selected'}></option>
+                {artists.map((artist) => {
+                  return (
+                    <option
+                      onClick={(e) => setQuery(e.target.value)}
+                      key={artist.name}
+                      value={artist.name.toString()}
+                    >
+                      {artist.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </>
+          )}
+        </>
+        ;
+        {/*       <select>
         <option
                     onClick={(e) => setQuery(e.target.value)}
                     onChange={handleArtist}
@@ -131,25 +163,21 @@ function CreateConcert() {
                    </option>
                   </select> 
                 </>
-        {/* <input
+        {<input
           type="text"
           name="artist"
           value={artist}
           onChange={handleArtist}
         />
- */}
+} */}
         <label htmlFor="imageUrl">Description</label>
         <input type="file" name="imageUrl" onChange={handleImageUrl} />
-
         <label htmlFor="date">date</label>
         <input type="date" name="date" value={date} onChange={handleDate} />
-
         <label htmlFor="city">city</label>
         <input type="text" name="city" value={city} onChange={handleCity} />
-
         <label htmlFor="venue">venue</label>
         <input type="text" name="venue" value={venue} onChange={handleVenue} />
-
         <label htmlFor="budget">budget</label>
         <input
           type="number"
@@ -157,7 +185,6 @@ function CreateConcert() {
           value={budget}
           onChange={handleBudget}
         />
-
         <label htmlFor="deadline">deadline</label>
         <input
           type="date"
@@ -165,7 +192,6 @@ function CreateConcert() {
           value={deadline}
           onChange={handleDeadline}
         />
-
         <label htmlFor="ticket">ticket</label>
         <input
           type="number"
@@ -173,7 +199,6 @@ function CreateConcert() {
           value={minTicket}
           onChange={handleMinTicket}
         />
-
         <button type="submit">add concert</button>
       </form>
     </div>
