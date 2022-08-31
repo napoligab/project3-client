@@ -18,7 +18,7 @@ function Navbar() {
      {loggedIn && (
       <>
      
-      <Link to={`/menu/${userId}`}>
+      <Link to="/menu">
       <img className="menu-icon" src={menu} alt='logo' />
       </Link>
 

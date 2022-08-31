@@ -127,7 +127,7 @@ function EditProfile() {
     <input type="email" name="email" value={email} placeholder="your email" onChange={handleEmail} /> <br></br>
 
     <label htmlFor="profilePicture"><b>profilePicture:</b> </label>
-<input type="file" name="profilePicture" value={profilePicture} onChange= {handleImageUrl} /> <br></br> 
+<input type="file" name="profilePicture" onChange= {handleImageUrl} /> <br></br> 
 
     <label htmlFor="creditCard"><b>credit card:</b> </label>
     <input type="text" name="creditCard" value={creditCard} placeholder="credit card number" minLength="16" maxLength="16" onChange= {handleCreditCard} /> <br></br>

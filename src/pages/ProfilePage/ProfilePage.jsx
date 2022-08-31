@@ -51,7 +51,7 @@ const getUser = async () => {
     <h4>email: {user.email}</h4>
     <h4>city: {user.city}</h4>
     <h4>credit card number: {user.creditCard}</h4>
-    <h4>profile picture: {user.profilePicture}</h4>
+    <img className="artist-pic" src={user.profilePicture} alt="profile" />
 
     <Link to={`/edit/${user._id}`}>
         <button>edit profile</button>

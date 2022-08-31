@@ -42,7 +42,7 @@ function EditConcert() {
           },
         }
       );
-      setArtist(response.data.artist);
+      setArtists(response.data.artist);
       setImage(response.data.image);
       setDate(response.data.date);
       setCity(response.data.city);
@@ -142,16 +142,42 @@ function EditConcert() {
       <h3>edit concert</h3>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="artist">artist</label>
-        <input
-          type="text"
-          name="artist"
-          value={artist}
-          onChange={handleArtist}
-        />
-
-        <label htmlFor="imageUrl">Description</label>
-        <input type="file" name="imageUrl" onChange={handleImageUrl} />
+      <label htmlFor="artist">artist</label>
+        <>
+          {showBar ? (
+            <>
+              <input
+                type="text"
+                onChange={(e) => setQuery(e.target.value)}
+                value={query}
+              />
+              <p onClick={() => getArtists()}>Submit</p>
+            </>
+          ) : (
+            <></>
+          )}
+          {artists !== null && (
+            <>
+              <select onChange={handleArtist}>
+                <option value={'No Artist Selected'}></option>
+                {/* {artists.map((artist) => { */}
+                  return (
+                    <option
+                      onClick={(e) => setQuery(e.target.value)}
+                      key={artist.name}
+                      value={artist.name}
+                    >
+                       {artist.name}
+                    </option>
+                  );
+                
+              </select>
+            </>
+          )}
+        </>
+        ;
+        <label htmlFor="image">picture</label>
+        <input type="file" name="image" onChange={handleImageUrl} />
 
         <label htmlFor="date">date</label>
         <input type="date" name="date" value={date} onChange={handleDate} />

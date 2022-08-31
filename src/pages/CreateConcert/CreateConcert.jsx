@@ -94,7 +94,7 @@ function CreateConcert() {
   };
 
   return (
-    <div className="AddConcert">
+    <div className="add-concert">
       {/* <>
         {showBar ? (
           <>
@@ -181,8 +181,8 @@ function CreateConcert() {
           onChange={handleArtist}
         />
 } */}
-        <label htmlFor="imageUrl">Description</label>
-        <input type="file" name="imageUrl" onChange={handleImageUrl} />
+        <label htmlFor="image">picture</label>
+        <input type="file" name="image" onChange={handleImageUrl} />
         <label htmlFor="date">date</label>
         <input type="date" name="date" value={date} onChange={handleDate} />
         <label htmlFor="city">city</label>

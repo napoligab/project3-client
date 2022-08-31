@@ -68,7 +68,7 @@ function App() {
           element={<FundedConcertsPage concerts={concerts} />}
         />
         <Route path="/createconcerts" element={<CreateConcert />} />
-        <Route path="/menu/:userId" element={<Menu />} />
+        <Route path="/menu" element={<Menu />} />
         <Route path="/user/:userId" element={<ProfilePage />} />
         <Route path="/edit/:userId" element={<EditProfile />} />
         <Route path="*" element={<ErrorPage />} />
