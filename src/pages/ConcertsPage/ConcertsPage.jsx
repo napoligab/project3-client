@@ -1,6 +1,6 @@
 import './concerts.css';
 import { Link } from 'react-router-dom';
-import { useContext , useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/auth.context';
 import axios from 'axios';
 import calendar from '../../calendar.png';
@@ -52,7 +52,7 @@ function ConcertsPage() {
   return (
     <div>
       <h2>concerts</h2>
-     
+
       <input
         type="text"
         className="text-black"
