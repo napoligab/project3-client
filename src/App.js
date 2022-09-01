@@ -37,7 +37,7 @@ function App() {
       console.log(response.data);
       setConcerts(response.data);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.errorMessage);
     }
   };
 
@@ -55,7 +55,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route
           path="/concerts"
-          element={<ConcertsPage concerts={concerts} />}
+          element={<ConcertsPage />}
         />
         <Route
           path="/concerts/:concertId/edit"

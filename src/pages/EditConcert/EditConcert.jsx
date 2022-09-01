@@ -147,7 +147,7 @@ function EditConcert() {
           {showBar ? (
             <>
               <input
-                type="text"
+                type="text" className="text-black"
                 onChange={(e) => setQuery(e.target.value)}
                 value={query}
               />
@@ -156,26 +156,26 @@ function EditConcert() {
           ) : (
             <></>
           )}
-          {artists !== null && (
+          {artists && (
             <>
               <select onChange={handleArtist}>
                 <option value={'No Artist Selected'}></option>
-                {/* {artists.map((artist) => { */}
+                {artists.map((artist) => {
                   return (
                     <option
                       onClick={(e) => setQuery(e.target.value)}
                       key={artist.name}
-                      value={artist.name}
+                      value={artist.name.toString()}
                     >
-                       {artist.name}
+                      {artist.name}
                     </option>
                   );
-                
+                })}
               </select>
             </>
           )}
         </>
-        ;
+        
         <label htmlFor="image">picture</label>
         <input type="file" name="image" onChange={handleImageUrl} />
 

@@ -36,7 +36,7 @@ function FundedConcertsPage() {
           <h2>funded concerts</h2>
           {objUser.fundedConcerts.map((concert) => {
             return (
-              <div className="concert-card" key={concert._id}>
+              <div className="concert-card mt-4" key={concert._id}>
                 <h3>{concert.artist}</h3>
                 <img className="artist-pic" src={concert.image} alt="artist" />
                 <h4>{concert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
