@@ -51,13 +51,15 @@ function ConcertsPage() {
               <h4>{concert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
               <h4>{concert.city}</h4>
               <h4>{concert.venue}</h4>
-              <h4>{concert.budget}€</h4>
+              {concert.budget <= 0 ?
+                <h4>this concert is happening! </h4> :
+                <h4>{concert.budget}</h4>
+              }
               <h4>{concert.minTicket}€</h4>
               <h4>{concert.usersFunding.length}</h4>
             </Link>
 
 
-      
             {!user.admin &&
             <Link to={`/concerts/${concert._id}/fund`}>
              <button className="fund-btn">fund!</button>
