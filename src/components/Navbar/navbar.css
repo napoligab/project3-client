@@ -15,7 +15,7 @@ align-items: center;
 }
 
 .menu-icon {
-    filter: invert(100%);
+    filter: invert(200%);
     max-width: 8vw;
     max-height: 4vh;
     margin-left: 3vw;

@@ -69,7 +69,7 @@ function ConcertsPage() {
         concerts.map((concert) => {
           return (
             <div className="concert-card mt-4" key={concert._id}>
-              <h3>{concert.artist}</h3>
+             <h3>{concert.artist}</h3>
               <img className="artist-pic" src={concert.image} alt="artist" />
               <h4>
               concert day: {concert.date.slice(0, 10).split('-').reverse().join('/')}
@@ -79,10 +79,11 @@ function ConcertsPage() {
               {concert.budget <= 0 ? (
                 <h4>this concert is happening! </h4>
               ) : (
-                <h4>{concert.budget}</h4>
+                <h4>{concert.budget}€</h4>
               )}
               <h4>{concert.minTicket}€</h4>
               <h4>{concert.usersFunding.length}</h4>
+        
 
               {!user.admin && (
                 <Link to={`/concerts/${concert._id}/fund`}>
