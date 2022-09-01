@@ -2,6 +2,7 @@ import axios from 'axios';
 import {useState, useEffect, useContext} from 'react';
 import {useNavigate, useParams} from 'react-router-dom'; 
 import { AuthContext } from '../../context/auth.context';
+import './editProfile.css';
 
 
 function EditProfile() {
@@ -108,9 +109,9 @@ function EditProfile() {
 
   return (
 
-    <div className="edit-profile">
+    <div>
 
-    <h2>edit profile</h2>
+    <h2 className='text-2xl'>edit profile</h2>
 
     <div className="login-page">
 
@@ -118,30 +119,31 @@ function EditProfile() {
     {user && (
 <>
         <label htmlFor="firstName"><b>first name:</b> </label>
-    <input type="text" name="text" value={firstName} placeholder="first name" onChange={handleFirstName} /> <br></br>
+    <input className='input w-full max-w-xs' type="text" name="text" value={firstName} placeholder="first name" onChange={handleFirstName} /> <br></br>
 
     <label htmlFor="lastName"><b>last name:</b> </label>
-    <input type="text" name="lastName" value={lastName} placeholder="last name" onChange={handleLastName} /> <br></br>
+    <input className='input w-full max-w-xs' type="text" name="lastName" value={lastName} placeholder="last name" onChange={handleLastName} /> <br></br>
 
     <label htmlFor="email"><b>email:</b> </label>
-    <input type="email" name="email" value={email} placeholder="your email" onChange={handleEmail} /> <br></br>
+    <input className='input w-full max-w-xs' type="email" name="email" value={email} placeholder="your email" onChange={handleEmail} /> <br></br>
 
     <label htmlFor="profilePicture"><b>profilePicture:</b> </label>
-<input type="file" name="profilePicture" onChange= {handleImageUrl} /> <br></br> 
+<input className='input w-full max-w-xs' type="file" name="profilePicture" onChange= {handleImageUrl} /> <br></br> 
 
     <label htmlFor="creditCard"><b>credit card:</b> </label>
-    <input type="text" name="creditCard" value={creditCard} placeholder="credit card number" minLength="16" maxLength="16" onChange= {handleCreditCard} /> <br></br>
+    <input className='input w-full max-w-xs' type="text" name="creditCard" value={creditCard} placeholder="credit card number" minLength="16" maxLength="16" onChange= {handleCreditCard} /> <br></br>
 
     <label htmlFor="city"><b>city:</b> </label>
-    <input type="text" name="city" value={city} placeholder="city" onChange={handleCity} /> <br></br>
+    <input className='input w-full max-w-xs' type="text" name="city" value={city} placeholder="city" onChange={handleCity} /> <br></br>
 
-    <button type="submit">update</button>
-    <button onClick={deleteUser}>delete profile</button>
+    <button className='btn btn-primary btn-position' type="submit">update</button>
     </>
 )}
         </form>
-
     </div>
+
+    <button className='btn btn-primary btn-position' onClick={deleteUser}>delete profile</button>
+
     </div>
   )
  }

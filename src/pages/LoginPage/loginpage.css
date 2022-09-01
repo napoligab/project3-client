@@ -16,6 +16,7 @@ h2 {
   color: white;
   margin-top: 10vh;
 }
+
 /* .login-btn {
   border-radius: 10px;
   display: flex;
@@ -35,4 +36,8 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.btn {
+  margin-left: 30vw;
 }

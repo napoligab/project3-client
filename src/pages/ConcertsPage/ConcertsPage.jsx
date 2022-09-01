@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useContext , useState, useEffect } from 'react';
 import { AuthContext } from '../../context/auth.context';
 import axios from 'axios';
+import calendar from '../../calendar.png';
+
 
 function ConcertsPage() {
   const { user } = useContext(AuthContext);
@@ -60,7 +62,7 @@ function ConcertsPage() {
  
              {user && user.admin && (
                 <Link to={'/createconcerts'}>
-                  <button className="fund-btn">create concert!</button>
+                  <button className="btn btn-primary">create concert!</button>
                 </Link>
               )}
 
@@ -69,31 +71,29 @@ function ConcertsPage() {
         concerts.map((concert) => {
           return (
             <div className="concert-card mt-4" key={concert._id}>
-             <h3>{concert.artist}</h3>
+             <h3 className='text-2xl'><b>{concert.artist}</b></h3>
               <img className="artist-pic" src={concert.image} alt="artist" />
-              <h4>
-              concert day: {concert.date.slice(0, 10).split('-').reverse().join('/')}
-              </h4>
-              <h4>{concert.city}</h4>
-              <h4>{concert.venue}</h4>
+            <h4> <b>date:</b> {concert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
+              <h4><b>city:</b> {concert.city}</h4>
+              <h4><b>venue:</b> {concert.venue}</h4>
               {concert.budget <= 0 ? (
-                <h4>this concert is happening! </h4>
+                <h4><b>this concert is happening!</b> </h4>
               ) : (
-                <h4>{concert.budget}€</h4>
+                <h4><b>budget:</b> {concert.budget}€</h4>
               )}
-              <h4>{concert.minTicket}€</h4>
-              <h4>{concert.usersFunding.length}</h4>
+              <h4><b>ticket price:</b> {concert.minTicket}€</h4>
+              <h4><b>people going:</b> {concert.usersFunding.length}</h4>
         
 
               {!user.admin && (
                 <Link to={`/concerts/${concert._id}/fund`}>
-                  <button className="fund-btn">fund!</button>
+                  <button className="btn btn-primary">fund!</button>
                 </Link>
               )}
 
               {user.admin && (
                 <Link to={`/concerts/${concert._id}/edit`}>
-                  <button className="fund-btn">edit concert!</button>
+                  <button className="btn btn-primary">edit concert!</button>
                 </Link>
               )}
 

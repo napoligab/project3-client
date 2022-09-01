@@ -31,7 +31,7 @@ function CheckRequests() {
   return (
     <div>
 
-    <h2>check requests</h2>
+    <h2 className='text-2xl'>check requests</h2>
 
     {messages.map((message) => {
         return (

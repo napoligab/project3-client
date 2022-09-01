@@ -7,15 +7,19 @@
   background-color: rgb(217, 217, 217, 0.6);
   margin-top: 10vh;
   border-radius: 20px;
-  width: 80vw;
   margin-left: 10vw;
-  height: 30vh;
+  min-height: 60vh; 
 }
 
 h2 {
   color: white;
   margin-top: 10vh;
 }
+
+input {
+  margin: 5px;
+}
+
 /* .login-btn {
   border-radius: 10px;
   display: flex;
@@ -28,7 +32,6 @@ h2 {
   background-color: #D9D9D9;
   color: #827676;
   border-style: none;
-
 }
 
 .account-btn {

@@ -48,14 +48,14 @@ function FundPage(props) {
 
       {foundConcert && (
         <>
-              <h3>{foundConcert.artist}</h3>
+              <h3 className='text-2xl'><b>{foundConcert.artist}</b></h3>
               <img className="artist-pic" src={foundConcert.image} alt="artist" />
-              <h4>{foundConcert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
-              <h4>{foundConcert.city}</h4>
-              <h4>{foundConcert.venue}</h4>
-              <h4>{foundConcert.budget}€</h4>
-              <h4>{foundConcert.minTicket}€</h4>
-              <h4>{foundConcert.usersFunding.length}</h4>
+              <h4><b>date:</b> {foundConcert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
+              <h4><b>city:</b> {foundConcert.city}</h4>
+              <h4><b>venue:</b> {foundConcert.venue}</h4>
+              <h4><b>budget to go: </b>{foundConcert.budget}€</h4>
+              <h4><b>ticket price: </b>{foundConcert.minTicket}€</h4>
+              <h4><b>people going: </b>{foundConcert.usersFunding.length}</h4>
             
 
           <form onSubmit={handleSubmit}>
@@ -67,7 +67,7 @@ function FundPage(props) {
               value={qtyTickets}
               onChange={handleTickets}
             />
-            <button className="fund-btn">fund!</button>
+            <button className="btn btn-primary">fund!</button>
           </form>
         </>
       )}

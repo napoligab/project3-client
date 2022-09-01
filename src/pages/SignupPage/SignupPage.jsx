@@ -37,14 +37,12 @@ function SignupPage() {
 
   return (
     <div className="SignupPage">
-      <h2>sign up</h2>
 
       <div className="login-page">
         <form onSubmit={handleSubmit}>
           <label htmlFor="firstName">
-            <b>first name:</b>{' '}
           </label>
-          <input
+          <input className="input w-full max-w-xs"
             type="text"
             name="text"
             value={firstName}
@@ -53,9 +51,8 @@ function SignupPage() {
           />{' '}
           <br></br>
           <label htmlFor="lastName">
-            <b>last name:</b>{' '}
           </label>
-          <input
+          <input className="input w-full max-w-xs"
             type="text"
             name="lastName"
             value={lastName}
@@ -64,9 +61,8 @@ function SignupPage() {
           />{' '}
           <br></br>
           <label htmlFor="email">
-            <b>email:</b>{' '}
           </label>
-          <input
+          <input className="input w-full max-w-xs"
             type="email"
             name="email"
             value={email}
@@ -75,9 +71,8 @@ function SignupPage() {
           />{' '}
           <br></br>
           <label htmlFor="password">
-            <b>password:</b>{' '}
           </label>
-          <input
+          <input className="input w-full max-w-xs"
             type="password"
             name="password"
             value={password}
@@ -86,9 +81,8 @@ function SignupPage() {
           />{' '}
           <br></br>
           <label htmlFor="creditCard">
-            <b>credit card:</b>{' '}
           </label>
-          <input
+          <input className="input w-full max-w-xs"
             type="text"
             name="creditCard"
             value={creditCard}
@@ -99,9 +93,8 @@ function SignupPage() {
           />{' '}
           <br></br>
           <label htmlFor="city">
-            <b>city:</b>{' '}
           </label>
-          <input
+          <input className="input w-full max-w-xs"
             type="text"
             name="city"
             value={city}
@@ -109,7 +102,7 @@ function SignupPage() {
             onChange={handleCity}
           />{' '}
           <br></br>
-          <button type="btn btn-primary">sign up</button>
+          <button type="submit" className="btn btn-primary">sign up</button>
         </form>
       </div>
 
@@ -117,7 +110,7 @@ function SignupPage() {
         {errorMessage && <p>{errorMessage}</p>}
 
         <p>Already have an account?</p>
-        <Link className="login-btn" to="/login">
+        <Link className="btn btn-primary" to="/login">
           login
         </Link>
       </div>

@@ -38,9 +38,9 @@ const handleSubmit = (e) => {
     <div>
 
     <form onSubmit={handleSubmit}>
-    <textarea className="message text-black textarea textarea-secondary" type="text" rows='15' cols='60' onChange={handleMessage} placeholder="who would you like to see in your city?">
+    <textarea className="message text-black textarea textarea-secondary" type="text" rows='15' cols='40' onChange={handleMessage} placeholder="who would you like to see in your city?">
     </textarea>
-    <button className="fund-btn">send request</button>
+    <button className="btn btn-primary btn-position">send request</button>
    </form>
     </div>
   )

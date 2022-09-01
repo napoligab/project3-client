@@ -3,8 +3,8 @@ background-color: black;
 height: 8vh;
 width: 100vw;
 display: flex;
-justify-items: flex-start;
 align-items: center;
+justify-content: space-evenly;
 }
 
 .logo {

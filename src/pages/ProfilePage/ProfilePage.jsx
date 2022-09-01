@@ -6,16 +6,8 @@ import './profile.css';
 
 
 function ProfilePage() {
-
- 
 const [user, setUser] = useState(null);
-/* const {user: loggedUser} = useContext(AuthContext); */
 const {userId} = useParams();
-
-/* console.log("1: ", loggedUser._id)
-console.log("2: ", userId)
-
-console.log(user); */
 
 const getUser = async () => {
     try {
@@ -40,24 +32,27 @@ const getUser = async () => {
 /*   how to bring the user information here? */
 
   return (
+      
+      <div>
+      <h2 className='text-2xl'>my account</h2>
 
-    <div>
-    <h2>my account</h2>
+ <div className='concert-card'>
 
     {user && (
     <>
-    <h4>first name: {user.firstName}</h4>
-    <h4>last name: {user.lastName}</h4>
-    <h4>email: {user.email}</h4>
-    <h4>city: {user.city}</h4>
-    <h4>credit card number: {user.creditCard}</h4>
+    <h4><b>first name:</b> {user.firstName}</h4>
+    <h4><b>last name:</b> {user.lastName}</h4>
+    <h4><b>email:</b> {user.email}</h4>
+    <h4><b>city:</b> {user.city}</h4>
+    <h4><b>credit card number:</b> {user.creditCard}</h4>
     <img className="artist-pic" src={user.profilePicture} alt="profile" />
 
     <Link to={`/edit/${user._id}`}>
-        <button>edit profile</button>
+        <button className='btn btn-primary '>edit profile</button>
     </Link>
     </>
     )}
+ </div>
 
     </div>
   )

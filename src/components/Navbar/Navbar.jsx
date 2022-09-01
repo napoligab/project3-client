@@ -12,7 +12,7 @@ function Navbar() {
  
 
   return (
-    <nav className='Navbar'>
+    <nav className="Navbar">
 
      {loggedIn && (
       <>
@@ -25,7 +25,7 @@ function Navbar() {
       <img src={nobackground} alt='logo' className='logo'/>
      
      
-      <button onClick={logout}>logout</button>
+      <button className="link text-white" onClick={logout}>logout</button>
   
      
       </>
