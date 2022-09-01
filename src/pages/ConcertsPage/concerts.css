@@ -1,48 +1,25 @@
 h2 {
-    color: white;
-    margin-top: 2vh;
+  color: white;
+  margin-top: 2vh;
 }
-
 
 .artist-pic {
-    max-height: 150px;
-    max-width: 50vw;
+  max-height: 150px;
+  max-width: 50vw;
 }
 .concert-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color:rgb(217, 217, 217, 0.6);
-    border-radius: 20px;
-    max-width: 80vw;
-    margin-left: 10vw;
-    padding: 5px;
-    color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(217, 217, 217, 0.6);
+  border-radius: 20px;
+  max-width: 80vw;
+  margin-left: 10vw;
+  padding: 5px;
+  color: black;
 }
 
-.fund-btn {
-    border-radius:18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh; 
-    width: 15vw;
-    font-size: 16px; 
-    background-color: #7bff4d;
-    color: black;
-    border-style: none;
-}
-
-.create-concert-btn {
-    border-radius:18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh; 
-    width: 20vw;
-    font-size: 16px; 
-    background-color: #7bff4d;
-    color: black;
-    border-style: none;
+.concerts-btns-container {
+  display: inline-block;
 }

@@ -13,26 +13,30 @@ function ConcertsPage(props) {
 
       {/* these  button should be available for admin only */}
 
-      <Link to={'/createconcerts'}>
-        <button className="fund-btn">create concert!</button>
-      </Link>
+      <div className="concerts-btns-container">
+        <Link to={'/createconcerts'}>
+          <button className="btn btn-primary">create concert!</button>
+        </Link>
 
-       {/* these  button should be available for users only */}
-      <Link to={'/request'}>
-          <button className="fund-btn">send us your request</button>
-      </Link>
-      <Link to={'/checkrequests'}>
-          <button className="fund-btn">check requests</button>
-      </Link>
+        {/* these  button should be available for users only */}
+        <Link to={'/request'}>
+          <button className="btn btn-primary">send us your request</button>
+        </Link>
+        <Link to={'/checkrequests'}>
+          <button className="btn btn-primary">check requests</button>
+        </Link>
+      </div>
 
       {concerts.map((concert) => {
         return (
-          <div className="concert-card" key={concert._id}>
+          <div className="concert-card mt-4" key={concert._id}>
             <Link to={`/concerts/${concert._id}`}>
               <h3>{concert.artist}</h3>
               <img className="artist-pic" src={concert.image} alt="artist" />
-              <h4>{concert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
- 
+              <h4>
+                {concert.date.slice(0, 10).split('-').reverse().join('/')}
+              </h4>
+
               <h4>{concert.city}</h4>
               <h4>{concert.venue}</h4>
               <h4>{concert.budget}€</h4>
@@ -42,15 +46,14 @@ function ConcertsPage(props) {
 
             {/* these two buttons should be available for users only */}
             <Link to={`/concerts/${concert._id}/fund`}>
-              <button className="fund-btn">fund!</button>
+              <button className="btn btn-primary btn-xs">fund!</button>
             </Link>
 
             {/* these two buttons should be available for admin only */}
             <Link to={`/concerts/${concert._id}/edit`}>
-              <button className="fund-btn">edit concert!</button>
+              <button className="btn btn-primary btn-xs">edit concert</button>
             </Link>
           </div>
-           
         );
       })}
     </div>
