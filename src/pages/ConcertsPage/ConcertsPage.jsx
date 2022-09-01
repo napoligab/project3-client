@@ -49,29 +49,34 @@ function ConcertsPage() {
               </h4>
               <h4>{concert.city}</h4>
               <h4>{concert.venue}</h4>
-              <h4>{concert.budget}€</h4>
+              {concert.budget <= 0 ?
+                <h4>this concert is happening! </h4> :
+                <h4>{concert.budget}</h4>
+              }
               <h4>{concert.minTicket}€</h4>
               <h4>{concert.usersFunding.length}</h4>
             </Link>
 
-            {!user.admin && (
-              <Link to={`/concerts/${concert._id}/fund`}>
-                <button className="fund-btn">fund!</button>
-              </Link>
-            )}
 
-            {user.admin && (
-              <Link to={`/concerts/${concert._id}/edit`}>
-                <button className="fund-btn">edit concert!</button>
-              </Link>
-            )}
+            {!user.admin &&
+            <Link to={`/concerts/${concert._id}/fund`}>
+             <button className="fund-btn">fund!</button>
+            </Link>} 
 
-            {user.admin && (
-              <Link to={'/createconcerts'}>
-                <button className="fund-btn">create concert!</button>
-              </Link>
-            )}
-          </div>
+           {user.admin && 
+            <Link to={`/concerts/${concert._id}/edit`}>
+             <button className="fund-btn">edit concert!</button>
+            </Link>
+            } 
+
+            {user.admin &&
+           <Link to={'/createconcerts'}>
+            <button className="fund-btn">create concert!</button>
+           </Link>}
+
+  
+          </div> 
+
         );
       })}
     </div>
