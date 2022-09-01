@@ -40,22 +40,28 @@ function ConcertsPage() {
 
       {concerts.map((concert) => {
         return (
+          <div>
+          <>
+
+          {user.admin &&
+           <Link to={'/createconcerts'}>
+            <button className="fund-btn">create concert!</button>
+           </Link>} 
+          </>
           <div className="concert-card mt-4" key={concert._id}>
-            <Link to={`/concerts/${concert._id}`}>
-              <h3>{concert.artist}</h3>
+              <h3>artist: {concert.artist}</h3>
               <img className="artist-pic" src={concert.image} alt="artist" />
               <h4>
-                {concert.date.slice(0, 10).split('-').reverse().join('/')}
+              concert day: {concert.date.slice(0, 10).split('-').reverse().join('/')}
               </h4>
-              <h4>{concert.city}</h4>
-              <h4>{concert.venue}</h4>
+              <h4>city: {concert.city}</h4>
+              <h4>venue: {concert.venue}</h4>
               {concert.budget <= 0 ?
                 <h4>this concert is happening! </h4> :
-                <h4>{concert.budget}</h4>
+                <h4>budget: {concert.budget}</h4>
               }
-              <h4>{concert.minTicket}€</h4>
-              <h4>{concert.usersFunding.length}</h4>
-            </Link>
+              <h4> ticket price: {concert.minTicket}€</h4>
+              <h4>people going: {concert.usersFunding.length}</h4>
 
 
             {!user.admin &&
@@ -69,17 +75,13 @@ function ConcertsPage() {
             </Link>
             } 
 
-            {user.admin &&
-           <Link to={'/createconcerts'}>
-            <button className="fund-btn">create concert!</button>
-           </Link>}
-
   
           </div> 
 
+      </div>
         );
       })}
-    </div>
+     </div>
   );
 }
 

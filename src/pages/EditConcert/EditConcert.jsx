@@ -42,7 +42,7 @@ function EditConcert() {
           },
         }
       );
-      setArtists(response.data.artist);
+      console.log(response.data.artist)
       setImage(response.data.image);
       setDate(response.data.date);
       setCity(response.data.city);
@@ -57,6 +57,7 @@ function EditConcert() {
 
   useEffect(() => {
     getConcert();
+    getArtists();
   }, []);
 
   const handleArtist = (e) => setArtist(e.target.value);
@@ -142,7 +143,7 @@ function EditConcert() {
       <h3>edit concert</h3>
 
       <form onSubmit={handleSubmit}>
-      <label htmlFor="artist">artist</label>
+        <label htmlFor="artist">artist</label>
         <>
           {showBar ? (
             <>
@@ -156,7 +157,7 @@ function EditConcert() {
           ) : (
             <></>
           )}
-          {artists && (
+          {artists.length > 0 && (
             <>
               <select onChange={handleArtist}>
                 <option value={'No Artist Selected'}></option>
@@ -175,7 +176,7 @@ function EditConcert() {
             </>
           )}
         </>
-        
+          
         <label htmlFor="image">picture</label>
         <input type="file" name="image" onChange={handleImageUrl} />
 
@@ -189,32 +190,17 @@ function EditConcert() {
         <input type="text" name="venue" value={venue} onChange={handleVenue} />
 
         <label htmlFor="budget">budget</label>
-        <input
-          type="number"
-          name="budget"
-          value={budget}
-          onChange={handleBudget}
-        />
+        <input type="number" name="budget" value={budget} onChange={handleBudget} />
 
         <label htmlFor="deadline">deadline</label>
-        <input
-          type="date"
-          name="deadline"
-          value={deadline}
-          onChange={handleDeadline}
-        />
+        <input type="date" name="deadline" value={deadline} onChange={handleDeadline} />
 
         <label htmlFor="ticket">min ticket</label>
-        <input
-          type="number"
-          name="ticket"
-          value={minTicket}
-          onChange={handleMinTicket}
-        />
+        <input type="number" name="ticket" bvalue={minTicket} onChange={handleMinTicket} />
 
         <button type="submit">update concert</button>
 
-      </form>
+         </form>
 
       <button type="submit" onClick={deleteConcert}>
         delete concert

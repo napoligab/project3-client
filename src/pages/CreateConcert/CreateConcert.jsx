@@ -162,24 +162,7 @@ function CreateConcert() {
             </>
           )}
         </>
-        {/*       <select>
-        <option
-                    onClick={(e) => setQuery(e.target.value)}
-                    onChange={handleArtist}
-                    key={artist.name}
-                    value={artist.name}
-                  >
-                    {artist.name}
-                   </option>
-                  </select> 
-                </>
-        {<input
-          type="text"
-          name="artist"
-          value={artist}
-          onChange={handleArtist}
-        />
-} */}
+        
         <label htmlFor="image">picture</label>
         <input type="file" name="image" onChange={handleImageUrl} />
         <label htmlFor="date">date</label>
