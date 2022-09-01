@@ -1,4 +1,4 @@
-/* .login-page {
+.login-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,13 +10,13 @@
   width: 80vw;
   margin-left: 10vw;
   height: 30vh;
-} */
+}
 
 h2 {
   color: white;
   margin-top: 10vh;
 }
-.login-btn {
+/* .login-btn {
   border-radius: 10px;
   display: flex;
   align-self: center;
@@ -27,7 +27,7 @@ h2 {
   font-size: 16px;
   border-style: none;
   margin: 10px;
-}
+} */
 
 .account-btn {
   color: white;
