@@ -1,14 +1,13 @@
 import './concerts.css';
 import { Link } from 'react-router-dom';
 import Searchbar from '../../components/Searchbar/Searchbar';
-import {/* useContext ,*/ useState, useEffect} from 'react';
-import {useContext} from 'react';
-import { AuthContext } from '../../context/auth.context';  
+import { /* useContext ,*/ useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/auth.context';
 import axios from 'axios';
 
 function ConcertsPage() {
-
- const {user} = useContext(AuthContext);  
+  const { user } = useContext(AuthContext);
   const [concerts, setConcerts] = useState([]);
 
   const getConcerts = async () => {
@@ -33,22 +32,21 @@ function ConcertsPage() {
     getConcerts();
   }, []);
 
-
-
   return (
     <div>
       <h2>concerts</h2>
 
       <Searchbar />
 
-     
       {concerts.map((concert) => {
         return (
           <div className="concert-card mt-4" key={concert._id}>
             <Link to={`/concerts/${concert._id}`}>
               <h3>{concert.artist}</h3>
               <img className="artist-pic" src={concert.image} alt="artist" />
-              <h4>{concert.date.slice(0, 10).split('-').reverse().join('/')}</h4>
+              <h4>
+                {concert.date.slice(0, 10).split('-').reverse().join('/')}
+              </h4>
               <h4>{concert.city}</h4>
               <h4>{concert.venue}</h4>
               {concert.budget <= 0 ?
