@@ -1,8 +1,6 @@
 import './concerts.css';
 import { Link } from 'react-router-dom';
-import Searchbar from '../../components/Searchbar/Searchbar';
-import { /* useContext ,*/ useState, useEffect } from 'react';
-import { useContext } from 'react';
+import { useContext , useState, useEffect } from 'react';
 import { AuthContext } from '../../context/auth.context';
 import axios from 'axios';
 
@@ -52,16 +50,22 @@ function ConcertsPage() {
   return (
     <div>
       <h2>concerts</h2>
-
+     
       <input
         type="text"
         className="text-black"
         onChange={handleQuery}
         value={query}
       />
+ 
+             {user && user.admin && (
+                <Link to={'/createconcerts'}>
+                  <button className="fund-btn">create concert!</button>
+                </Link>
+              )}
 
-      {user &&
-        concerts &&
+      { user && concerts && 
+
         concerts.map((concert) => {
           return (
             <div className="concert-card mt-4" key={concert._id}>
@@ -92,11 +96,7 @@ function ConcertsPage() {
                 </Link>
               )}
 
-              {user.admin && (
-                <Link to={'/createconcerts'}>
-                  <button className="fund-btn">create concert!</button>
-                </Link>
-              )}
+              
             </div>
           );
         })}
