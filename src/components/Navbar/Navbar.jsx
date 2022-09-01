@@ -3,7 +3,7 @@ import {AuthContext} from '../../context/auth.context';
 import {useContext} from 'react'; 
 import nobackground from '../../nobackground.png'
 import './navbar.css';
-import menu from '../../menu.png';
+import bars from '../../bars.png'
 
 
 
@@ -18,7 +18,7 @@ function Navbar() {
       <>
      
       <Link to="/menu">
-      <img className="menu-icon" src={menu} alt='logo' />
+      <img className="menu-icon" src={bars} alt='logo' />
       </Link>
 
       

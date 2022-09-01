@@ -37,9 +37,8 @@ const handleSubmit = (e) => {
   return (
     <div>
 
-    <h2>who would you like to see in your city?</h2>
     <form onSubmit={handleSubmit}>
-    <textarea className="message text-black" type="text" rows='15' cols='30' onChange={handleMessage} placeholder="write your request here">
+    <textarea className="message text-black textarea textarea-secondary" type="text" rows='15' cols='60' onChange={handleMessage} placeholder="who would you like to see in your city?">
     </textarea>
     <button className="fund-btn">send request</button>
    </form>
