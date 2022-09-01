@@ -42,7 +42,7 @@ function EditConcert() {
           },
         }
       );
-      console.log(response.data.artist)
+      console.log(response.data.artist);
       setImage(response.data.image);
       setDate(response.data.date);
       setCity(response.data.city);
@@ -76,8 +76,8 @@ function EditConcert() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((response) => {
         setImage(response.data.fileUrl);
@@ -143,75 +143,119 @@ function EditConcert() {
 
   return (
     <div>
-      <h3 className='text-white text-2xl'>edit concert</h3>
+      <h3 className="text-white text-2xl">edit concert</h3>
 
       <div className="concert-card mt-4">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="artist">artist</label>
-        <>
-          {showBar ? (
-            <>
-              <input
-                type="text" className="text-black"
-                onChange={(e) => setQuery(e.target.value)}
-                value={query}
-              />
-              <p onClick={() => getArtists()}>Submit</p>
-            </>
-          ) : (
-            <></>
-          )}
-          {artists.length > 0 && (
-            <>
-              <select onChange={handleArtist}>
-                <option value={'No Artist Selected'}></option>
-                {artists.map((artist) => {
-                  return (
-                    <option
-                      onClick={(e) => setQuery(e.target.value)}
-                      key={artist.name}
-                      value={artist.name.toString()}
-                    >
-                      {artist.name}
-                    </option>
-                  );
-                })}
-              </select>
-            </>
-          )}
-        </>
-          
-        <label htmlFor="image">picture</label>
-        <input className='input w-full max-w-xs' type="file" name="image" onChange={handleImageUrl} />
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="artist">artist</label>
+          <>
+            {showBar ? (
+              <>
+                <input
+                  type="text"
+                  className="text-black"
+                  onChange={(e) => setQuery(e.target.value)}
+                  value={query}
+                />
+                <p onClick={() => getArtists()}>Submit</p>
+              </>
+            ) : (
+              <></>
+            )}
+            {artists.length > 0 && (
+              <>
+                <select onChange={handleArtist}>
+                  <option value={'No Artist Selected'}></option>
+                  {artists.map((artist) => {
+                    return (
+                      <option
+                        onClick={(e) => setQuery(e.target.value)}
+                        key={artist.name}
+                        value={artist.name.toString()}
+                      >
+                        {artist.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </>
+            )}
+          </>
 
-        <label htmlFor="date">date</label>
-        <input className='input w-full max-w-xs' type="date" name="date" value={date} onChange={handleDate} />
+          <label htmlFor="image">picture</label>
+          <input
+            className="input w-full max-w-xs text-white"
+            type="file"
+            name="image"
+            onChange={handleImageUrl}
+          />
 
-        <label htmlFor="city">city</label>
-        <input className='input w-full max-w-xs' type="text" name="city" value={city} onChange={handleCity} />
+          <label htmlFor="date">date</label>
+          <input
+            className="input w-full max-w-xs text-white"
+            type="date"
+            name="date"
+            value={date}
+            onChange={handleDate}
+          />
 
-        <label htmlFor="venue">venue</label>
-        <input className='input w-full max-w-xs' type="text" name="venue" value={venue} onChange={handleVenue} />
+          <label htmlFor="city">city</label>
+          <input
+            className="input w-full max-w-xs text-white"
+            type="text"
+            name="city"
+            value={city}
+            onChange={handleCity}
+          />
 
-        <label htmlFor="budget">budget</label>
-        <input className='input w-full max-w-xs' type="number" name="budget" value={budget} onChange={handleBudget} />
+          <label htmlFor="venue">venue</label>
+          <input
+            className="input w-full max-w-xs text-white"
+            type="text"
+            name="venue"
+            value={venue}
+            onChange={handleVenue}
+          />
 
-        <label htmlFor="deadline">deadline</label>
-        <input className='input w-full max-w-xs' type="date" name="deadline" value={deadline} onChange={handleDeadline} />
+          <label htmlFor="budget">budget</label>
+          <input
+            className="input w-full max-w-xs text-white"
+            type="number"
+            name="budget"
+            value={budget}
+            onChange={handleBudget}
+          />
 
-        <label htmlFor="ticket">min ticket</label>
-        <input className='input w-full max-w-xs' type="number" name="ticket" bvalue={minTicket} onChange={handleMinTicket} />
+          <label htmlFor="deadline">deadline</label>
+          <input
+            className="input w-full max-w-xs text-white"
+            type="date"
+            name="deadline"
+            value={deadline}
+            onChange={handleDeadline}
+          />
 
-        <button className='btn btn-primary btn-position' type="submit">update concert</button>
+          <label htmlFor="ticket">min ticket</label>
+          <input
+            className="input w-full max-w-xs text-white"
+            type="number"
+            name="ticket"
+            bvalue={minTicket}
+            onChange={handleMinTicket}
+          />
 
-         </form>
-
-      
-    </div>
-      <button className='btn btn-primary btn-position' type="submit" onClick={deleteConcert}>
-          delete concert
+          <button className="btn btn-primary btn-position" type="submit">
+            update concert
+          </button>
+        </form>
+      </div>
+      <button
+        className="btn btn-primary btn-position"
+        type="submit"
+        onClick={deleteConcert}
+      >
+        delete concert
       </button>
-
     </div>
   );
 }
