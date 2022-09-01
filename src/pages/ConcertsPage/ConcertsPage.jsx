@@ -1,31 +1,42 @@
 import './concerts.css';
 import { Link } from 'react-router-dom';
 import Searchbar from '../../components/Searchbar/Searchbar';
+import { /* useContext ,*/ useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/auth.context';
+import axios from 'axios';
 
-function ConcertsPage(props) {
-  const { concerts } = props;
+function ConcertsPage() {
+  const { user } = useContext(AuthContext);
+  const [concerts, setConcerts] = useState([]);
+
+  const getConcerts = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      let response = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/concerts`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+      setConcerts(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getConcerts();
+  }, []);
 
   return (
     <div>
       <h2>concerts</h2>
 
       <Searchbar />
-
-      {/* these  button should be available for admin only */}
-
-      <div className="concerts-btns-container">
-        <Link to={'/createconcerts'}>
-          <button className="btn btn-primary">create concert!</button>
-        </Link>
-
-        {/* these  button should be available for users only */}
-        <Link to={'/request'}>
-          <button className="btn btn-primary">send us your request</button>
-        </Link>
-        <Link to={'/checkrequests'}>
-          <button className="btn btn-primary">check requests</button>
-        </Link>
-      </div>
 
       {concerts.map((concert) => {
         return (
@@ -36,7 +47,6 @@ function ConcertsPage(props) {
               <h4>
                 {concert.date.slice(0, 10).split('-').reverse().join('/')}
               </h4>
-
               <h4>{concert.city}</h4>
               <h4>{concert.venue}</h4>
               <h4>{concert.budget}€</h4>
@@ -44,15 +54,23 @@ function ConcertsPage(props) {
               <h4>{concert.usersFunding.length}</h4>
             </Link>
 
-            {/* these two buttons should be available for users only */}
-            <Link to={`/concerts/${concert._id}/fund`}>
-              <button className="btn btn-primary btn-xs">fund!</button>
-            </Link>
+            {!user.admin && (
+              <Link to={`/concerts/${concert._id}/fund`}>
+                <button className="fund-btn">fund!</button>
+              </Link>
+            )}
 
-            {/* these two buttons should be available for admin only */}
-            <Link to={`/concerts/${concert._id}/edit`}>
-              <button className="btn btn-primary btn-xs">edit concert</button>
-            </Link>
+            {user.admin && (
+              <Link to={`/concerts/${concert._id}/edit`}>
+                <button className="fund-btn">edit concert!</button>
+              </Link>
+            )}
+
+            {user.admin && (
+              <Link to={'/createconcerts'}>
+                <button className="fund-btn">create concert!</button>
+              </Link>
+            )}
           </div>
         );
       })}

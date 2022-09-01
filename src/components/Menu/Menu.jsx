@@ -12,12 +12,27 @@ function MenuPage() {
         <Link className='menu-link' to={'/concerts'}>
         <h2>concerts</h2>
         </Link>
+
+        {!user.admin &&
         <Link className='menu-link' to={`/funded-concerts/${user._id}`}>
         <h2>funded concerts</h2>
         </Link>
+        } 
+
         <Link className='menu-link' to={`/user/${user._id}`}> 
         <h2>my account</h2></Link>
 
+        {!user.admin &&
+        <Link className='menu-link' to={'/request'}>
+          <h2>send us your request</h2>
+        </Link>
+        }
+
+        {user.admin &&
+        <Link className='menu-link' to={'/checkrequests'}>
+          <h2>check requests</h2>
+        </Link>
+        }
     
     </div>
   )

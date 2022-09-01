@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 
 function CheckRequests() {
     const [messages, setMessages] = useState([]);
-
+  
 
     const getMessages = async () => {
         try {
@@ -30,15 +30,14 @@ function CheckRequests() {
 
   return (
     <div>
+
     <h2>check requests</h2>
 
     {messages.map((message) => {
         return (
-          <div className="concert-card" key={message._id}>
-             {/*  <h4>{message.user.firsName}</h4>
-              <h4>{message.user.lastName}</h4>
-              <h4>{message.user.email}</h4> */}
-              <h4>{message.message}</h4>
+          <div className="concert-card mt-4" key={message._id}>
+              <h4><b>request by: {message.author.email}</b></h4> 
+              <p> {message.message}</p>
            </div>
         )
     })}
@@ -47,4 +46,4 @@ function CheckRequests() {
   )
 }
 
-export default CheckRequests
+export default CheckRequests;

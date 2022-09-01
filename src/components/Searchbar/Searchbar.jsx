@@ -6,6 +6,8 @@ function Searchbar() {
   const [artist, setArtist] = useState(null);
   const [input, setInput] = useState('');
 
+
+  //fazer um loop nos concerts e filtrar os que dão match no nome do artista
  
    const handleInput = (e) => setInput(e.target.value);
 
@@ -72,9 +74,24 @@ function Searchbar() {
         </> */}
        <form onSubmit={handleSubmit}>
         
-      <input type="text" name="search" value={input} onChange={handleInput} placeholder="type artist name" /> 
+      <input className="text-black" type="text" name="search" value={input} onChange={handleInput} placeholder="type artist name" /> 
        <button type="submit">search concerts</button>
       </form>
+
+    {concert && (
+       <>
+       <h3>{concert.artist}</h3>
+              <img className="artist-pic" src={concert.image} alt="artist" />
+             {/*  <h4>{concert.date.slice(0, 10).split('-').reverse().join('/')}</h4> */}
+              <h4>{concert.city}</h4>
+              <h4>{concert.venue}</h4>
+              <h4>{concert.budget}€</h4>
+              <h4>{concert.minTicket}€</h4>
+              {/* <h4>{concert.usersFunding.length}</h4> */}
+
+       </>
+
+    )}
     </div>
   )
 }

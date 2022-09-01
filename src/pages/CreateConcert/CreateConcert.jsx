@@ -134,7 +134,7 @@ function CreateConcert() {
           {showBar ? (
             <>
               <input
-                type="text"
+                type="text" className="text-black"
                 onChange={(e) => setQuery(e.target.value)}
                 value={query}
               />
@@ -162,7 +162,6 @@ function CreateConcert() {
             </>
           )}
         </>
-        ;
         {/*       <select>
         <option
                     onClick={(e) => setQuery(e.target.value)}
