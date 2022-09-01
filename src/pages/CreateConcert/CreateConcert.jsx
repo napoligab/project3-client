@@ -94,48 +94,21 @@ function CreateConcert() {
   };
 
   return (
-    <div className="add-concert">
-      {/* <>
-        {showBar ? (
-          <>
-            <input
-              type="text"
-              onChange={(e) => setQuery(e.target.value)}
-              value={query}
-            />
-            <button onClick={() => getArtists()}>Submit</button>
-          </>
-        ) : (
-          <></>
-        )}
-        {artists && (
-          <>
-            <select>
-              {artists.map((artist) => {
-                return (
-                  <option
-                    onClick={(e) => setQuery(e.target.value)}
-                    key={artist.name}
-                    value={artist.name}
-                  >
-                    {artist.name}
-                  </option>
-                );
-              })}
-            </select>
-          </>
-        )}
-      </> */}
-      <h3>add concert</h3>
+    <div>
+
+    <h3 className='text-2xl text-white'>add concert</h3>
+
+    <div className="concert-card mt-4">
+      
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="artist">artist</label>
         <>
           {showBar ? (
             <>
-              <input
+              <input 
                 type="text"
-                className="text-black"
+                className="text-white input w-full max-w-xs"
                 onChange={(e) => setQuery(e.target.value)}
                 value={query}
               />
@@ -163,38 +136,39 @@ function CreateConcert() {
             </>
           )}
         </>
-        
+
         <label htmlFor="image">picture</label>
-        <input type="file" name="image" onChange={handleImageUrl} />
+        <input className='text-white input w-full max-w-xs' type="file" name="image" onChange={handleImageUrl} />
         <label htmlFor="date">date</label>
-        <input type="date" name="date" value={date} onChange={handleDate} />
+        <input className='text-white input w-full max-w-xs' type="date" name="date" value={date} onChange={handleDate} />
         <label htmlFor="city">city</label>
-        <input type="text" name="city" value={city} onChange={handleCity} />
+        <input className='text-white input w-full max-w-xs' type="text" name="city" value={city} onChange={handleCity} />
         <label htmlFor="venue">venue</label>
-        <input type="text" name="venue" value={venue} onChange={handleVenue} />
+        <input className='text-white input w-full max-w-xs' type="text" name="venue" value={venue} onChange={handleVenue} />
         <label htmlFor="budget">budget</label>
-        <input
+        <input className='text-white input w-full max-w-xs'
           type="number"
           name="budget"
           value={budget}
           onChange={handleBudget}
         />
         <label htmlFor="deadline">deadline</label>
-        <input
+        <input className='text-white input w-full max-w-xs'
           type="date"
           name="deadline"
           value={deadline}
           onChange={handleDeadline}
         />
         <label htmlFor="ticket">ticket</label>
-        <input
+        <input className='text-white input w-full max-w-xs'
           type="number"
           name="ticket"
           value={minTicket}
           onChange={handleMinTicket}
         />
-        <button type="submit">add concert</button>
+        <button className='btn btn-primary btn-position' type="submit">add concert</button>
       </form>
+    </div>
     </div>
   );
 }

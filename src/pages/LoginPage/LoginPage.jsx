@@ -41,7 +41,7 @@ function LoginPage(props) {
             <b>email:</b>{' '}
           </label>
           <input
-            className="input w-full max-w-xs"
+            className="text-white input w-full max-w-xs"
             type="email"
             name="email"
             value={email}
@@ -53,7 +53,7 @@ function LoginPage(props) {
             <b>password:</b>{' '}
           </label>
           <input
-            className="input w-full max-w-xs"
+            className="text-white input w-full max-w-xs"
             type="password"
             name="password"
             value={password}

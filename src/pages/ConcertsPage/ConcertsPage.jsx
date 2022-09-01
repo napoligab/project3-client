@@ -51,7 +51,7 @@ function ConcertsPage() {
 
   return (
     <div>
-      <h2>concerts</h2>
+      <h2 className='text-2xl'>concerts</h2>
 
       <input
         type="text"
@@ -62,7 +62,7 @@ function ConcertsPage() {
  
              {user && user.admin && (
                 <Link to={'/createconcerts'}>
-                  <button className="btn btn-primary">create concert!</button>
+                  <button className="btn btn-primary btn-position">create concert!</button>
                 </Link>
               )}
 

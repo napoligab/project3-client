@@ -142,9 +142,10 @@ function EditConcert() {
   };
 
   return (
-    <div className="edit-concert">
-      <h3>edit concert</h3>
+    <div>
+      <h3 className='text-white text-2xl'>edit concert</h3>
 
+      <div className="concert-card mt-4">
       <form onSubmit={handleSubmit}>
         <label htmlFor="artist">artist</label>
         <>
@@ -181,33 +182,36 @@ function EditConcert() {
         </>
           
         <label htmlFor="image">picture</label>
-        <input type="file" name="image" onChange={handleImageUrl} />
+        <input className='input w-full max-w-xs' type="file" name="image" onChange={handleImageUrl} />
 
         <label htmlFor="date">date</label>
-        <input type="date" name="date" value={date} onChange={handleDate} />
+        <input className='input w-full max-w-xs' type="date" name="date" value={date} onChange={handleDate} />
 
         <label htmlFor="city">city</label>
-        <input type="text" name="city" value={city} onChange={handleCity} />
+        <input className='input w-full max-w-xs' type="text" name="city" value={city} onChange={handleCity} />
 
         <label htmlFor="venue">venue</label>
-        <input type="text" name="venue" value={venue} onChange={handleVenue} />
+        <input className='input w-full max-w-xs' type="text" name="venue" value={venue} onChange={handleVenue} />
 
         <label htmlFor="budget">budget</label>
-        <input type="number" name="budget" value={budget} onChange={handleBudget} />
+        <input className='input w-full max-w-xs' type="number" name="budget" value={budget} onChange={handleBudget} />
 
         <label htmlFor="deadline">deadline</label>
-        <input type="date" name="deadline" value={deadline} onChange={handleDeadline} />
+        <input className='input w-full max-w-xs' type="date" name="deadline" value={deadline} onChange={handleDeadline} />
 
         <label htmlFor="ticket">min ticket</label>
-        <input type="number" name="ticket" bvalue={minTicket} onChange={handleMinTicket} />
+        <input className='input w-full max-w-xs' type="number" name="ticket" bvalue={minTicket} onChange={handleMinTicket} />
 
-        <button type="submit">update concert</button>
+        <button className='btn btn-primary btn-position' type="submit">update concert</button>
 
          </form>
 
-      <button type="submit" onClick={deleteConcert}>
-        delete concert
+      
+    </div>
+      <button className='btn btn-primary btn-position' type="submit" onClick={deleteConcert}>
+          delete concert
       </button>
+
     </div>
   );
 }

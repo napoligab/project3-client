@@ -42,7 +42,7 @@ function SignupPage() {
         <form onSubmit={handleSubmit}>
           <label htmlFor="firstName">
           </label>
-          <input className="input w-full max-w-xs"
+          <input className="text-white input w-full max-w-xs"
             type="text"
             name="text"
             value={firstName}
@@ -52,7 +52,7 @@ function SignupPage() {
           <br></br>
           <label htmlFor="lastName">
           </label>
-          <input className="input w-full max-w-xs"
+          <input className="text-white input w-full max-w-xs"
             type="text"
             name="lastName"
             value={lastName}
@@ -62,7 +62,7 @@ function SignupPage() {
           <br></br>
           <label htmlFor="email">
           </label>
-          <input className="input w-full max-w-xs"
+          <input className="text-white input w-full max-w-xs"
             type="email"
             name="email"
             value={email}
@@ -72,7 +72,7 @@ function SignupPage() {
           <br></br>
           <label htmlFor="password">
           </label>
-          <input className="input w-full max-w-xs"
+          <input className="text-white input w-full max-w-xs"
             type="password"
             name="password"
             value={password}
@@ -82,7 +82,7 @@ function SignupPage() {
           <br></br>
           <label htmlFor="creditCard">
           </label>
-          <input className="input w-full max-w-xs"
+          <input className="text-white input w-full max-w-xs"
             type="text"
             name="creditCard"
             value={creditCard}
@@ -94,7 +94,7 @@ function SignupPage() {
           <br></br>
           <label htmlFor="city">
           </label>
-          <input className="input w-full max-w-xs"
+          <input className="text-white input w-full max-w-xs"
             type="text"
             name="city"
             value={city}
