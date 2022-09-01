@@ -1,6 +1,6 @@
 import './concerts.css';
 import { Link } from 'react-router-dom';
-import { useContext , useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/auth.context';
 import axios from 'axios';
 
@@ -50,32 +50,33 @@ function ConcertsPage() {
   return (
     <div>
       <h2>concerts</h2>
-     
+
       <input
         type="text"
         className="text-black"
         onChange={handleQuery}
         value={query}
       />
- 
-             {user && user.admin && (
-                <Link to={'/createconcerts'}>
-                  <button className="fund-btn">create concert!</button>
-                </Link>
-              )}
 
-      { user && concerts && 
+      {user && user.admin && (
+        <Link to={'/createconcerts'}>
+          <button className="fund-btn">create concert!</button>
+        </Link>
+      )}
 
+      {user &&
+        concerts &&
         concerts.map((concert) => {
           return (
             <div className="concert-card mt-4" key={concert._id}>
               <h3>{concert.artist}</h3>
               <img className="artist-pic" src={concert.image} alt="artist" />
               <h4>
-              concert day: {concert.date.slice(0, 10).split('-').reverse().join('/')}
+                concert day:{' '}
+                {concert.date.slice(0, 10).split('-').reverse().join('/')}
               </h4>
-              <h4>{concert.city}</h4>
-              <h4>{concert.venue}</h4>
+              <h4>City: {concert.city}</h4>
+              <h4>Venue: {concert.venue}</h4>
               {concert.budget <= 0 ? (
                 <h4>this concert is happening! </h4>
               ) : (
@@ -95,8 +96,6 @@ function ConcertsPage() {
                   <button className="fund-btn">edit concert!</button>
                 </Link>
               )}
-
-              
             </div>
           );
         })}
