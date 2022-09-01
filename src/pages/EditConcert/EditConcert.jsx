@@ -21,7 +21,7 @@ function EditConcert() {
   const getArtists = async () => {
     try {
       const response = await axios.get(
-        `http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${query}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json`
+        `https://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${query}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json`
       );
       console.log(response.data.results.artistmatches.artist);
       setArtists(response.data.results.artistmatches.artist);
@@ -75,8 +75,8 @@ function EditConcert() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((response) => {
         setImage(response.data.fileUrl);
@@ -86,27 +86,31 @@ function EditConcert() {
   };
 
   const handleSubmit = (e) => {
-      e.preventDefault();
+    e.preventDefault();
 
     const token = localStorage.getItem('authToken');
 
     const body = {
-        artist,
-        image,
-        date,
-        city,
-        venue,
-        budget,
-        deadline,
-        minTicket,
+      artist,
+      image,
+      date,
+      city,
+      venue,
+      budget,
+      deadline,
+      minTicket,
     };
 
     axios
-      .put(`${process.env.REACT_APP_API_URL}/api/concerts/${concertId}/edit`, body, {
+      .put(
+        `${process.env.REACT_APP_API_URL}/api/concerts/${concertId}/edit`,
+        body,
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        })
+        }
+      )
       .then(() => {
         setArtist('');
         setImage('');
@@ -120,7 +124,6 @@ function EditConcert() {
       })
       .catch((err) => console.log(err.response.data.errorMessage));
   };
-
 
   // Delete concert
 
@@ -142,12 +145,13 @@ function EditConcert() {
       <h3>edit concert</h3>
 
       <form onSubmit={handleSubmit}>
-      <label htmlFor="artist">artist</label>
+        <label htmlFor="artist">artist</label>
         <>
           {showBar ? (
             <>
               <input
-                type="text" className="text-black"
+                type="text"
+                className="text-black"
                 onChange={(e) => setQuery(e.target.value)}
                 value={query}
               />
@@ -175,7 +179,7 @@ function EditConcert() {
             </>
           )}
         </>
-        
+
         <label htmlFor="image">picture</label>
         <input type="file" name="image" onChange={handleImageUrl} />
 
@@ -213,7 +217,6 @@ function EditConcert() {
         />
 
         <button type="submit">update concert</button>
-
       </form>
 
       <button type="submit" onClick={deleteConcert}>
