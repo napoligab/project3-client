@@ -21,7 +21,7 @@ function EditConcert() {
   const getArtists = async () => {
     try {
       const response = await axios.get(
-        `http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${query}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json`
+        `https://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${query}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json`
       );
       console.log(response.data.results.artistmatches.artist);
       setArtists(response.data.results.artistmatches.artist);
@@ -87,27 +87,31 @@ function EditConcert() {
   };
 
   const handleSubmit = (e) => {
-      e.preventDefault();
+    e.preventDefault();
 
     const token = localStorage.getItem('authToken');
 
     const body = {
-        artist,
-        image,
-        date,
-        city,
-        venue,
-        budget,
-        deadline,
-        minTicket,
+      artist,
+      image,
+      date,
+      city,
+      venue,
+      budget,
+      deadline,
+      minTicket,
     };
 
     axios
-      .put(`${process.env.REACT_APP_API_URL}/api/concerts/${concertId}/edit`, body, {
+      .put(
+        `${process.env.REACT_APP_API_URL}/api/concerts/${concertId}/edit`,
+        body,
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        })
+        }
+      )
       .then(() => {
         setArtist('');
         setImage('');
@@ -121,7 +125,6 @@ function EditConcert() {
       })
       .catch((err) => console.log(err.response.data.errorMessage));
   };
-
 
   // Delete concert
 

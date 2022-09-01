@@ -35,8 +35,6 @@ function LoginPage(props) {
 
   return (
     <div>
-      <h2>login</h2>
-
       <div className="login-page">
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">
@@ -64,7 +62,7 @@ function LoginPage(props) {
             placeholder="your password"
           />
           <br></br>
-          <button className="login-btn btn btn-primary" type="submit">
+          <button className="btn btn-primary" type="submit">
             Login
           </button>
         </form>

@@ -20,7 +20,7 @@ function CreateConcert() {
   const getArtists = async () => {
     try {
       const response = await axios.get(
-        `http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${query}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json`
+        `https://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${query}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json`
       );
       console.log(response.data.results.artistmatches.artist);
       setArtists(response.data.results.artistmatches.artist);
@@ -44,10 +44,10 @@ function CreateConcert() {
 
     uploadData.append('imageUrl', e.target.files[0]);
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData,{
+      .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((response) => {
         setImage(response.data.fileUrl);
@@ -134,7 +134,8 @@ function CreateConcert() {
           {showBar ? (
             <>
               <input
-                type="text" className="text-black"
+                type="text"
+                className="text-black"
                 onChange={(e) => setQuery(e.target.value)}
                 value={query}
               />
