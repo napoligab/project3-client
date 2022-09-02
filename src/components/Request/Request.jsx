@@ -37,7 +37,7 @@ function Request() {
     <div>
       <form onSubmit={handleSubmit}>
         <textarea
-          className="message text-WHITE textarea textarea-secondary"
+          className="message text-white textarea textarea-secondary"
           type="text"
           rows="15"
           cols="40"
