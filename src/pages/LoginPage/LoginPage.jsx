@@ -37,9 +37,6 @@ function LoginPage(props) {
     <div>
       <div className="login-page">
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email">
-            <b>email:</b>{' '}
-          </label>
           <input
             className="text-white input w-full max-w-xs"
             type="email"
@@ -49,9 +46,6 @@ function LoginPage(props) {
             placeholder="your email"
           />{' '}
           <br></br>
-          <label htmlFor="password">
-            <b>password:</b>{' '}
-          </label>
           <input
             className="text-white input w-full max-w-xs"
             type="password"
