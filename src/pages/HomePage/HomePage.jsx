@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import './homepage.css';
 
+
 function HomePage() {
   return (
-    <div>
-      <div className="home-btn">
+    <div className='home-btn bg-auto'>
+     
         <Link to="/login">
           <button className="btn btn-primary">login</button>
         </Link>
@@ -12,8 +13,8 @@ function HomePage() {
         <Link to="/signup">
           <button className="btn btn-primary">signup</button>
         </Link>
-      </div>
-    </div>
+  
+    </div> 
   );
 }
 

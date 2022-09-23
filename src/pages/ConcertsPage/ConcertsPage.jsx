@@ -58,6 +58,7 @@ function ConcertsPage() {
         className="text-black"
         onChange={handleQuery}
         value={query}
+        placeholder="search for an artist"
       />
  
              {user && user.admin && (
